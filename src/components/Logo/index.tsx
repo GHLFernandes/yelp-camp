@@ -2,6 +2,7 @@ import React, { ReactElement, memo } from 'react'
 import styled from 'styled-components'
 
 import LogoImg from './img/Logo.svg'
+import { Link } from 'react-router-dom'
 
 const StyledLogo = styled.div`
 
@@ -14,7 +15,9 @@ const StyledLogo = styled.div`
 const Logo = (): ReactElement => {
   return (
     <StyledLogo>
-      <img src={LogoImg} alt="logo" />
+      <Link to='/'>
+        <img src={LogoImg} alt="logo" />
+      </Link>
     </StyledLogo>
   )
 }
