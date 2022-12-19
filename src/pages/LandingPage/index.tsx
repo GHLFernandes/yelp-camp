@@ -66,6 +66,10 @@ const ImgCamp = styled.div`
   height: 30vh;
   margin-bottom: 10px;
 
+  @media (min-width: 720px) {
+    height: 50vh;
+  }
+
   @media (min-width: 1020px) {
     grid-column: 8 / span 12;
     background-image: url(${img});
