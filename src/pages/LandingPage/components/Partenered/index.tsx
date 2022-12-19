@@ -2,8 +2,6 @@ import React from 'react'
 import styled from 'styled-components'
 
 const StyledPartenered = styled.div`
-    padding: 20px 20px;
-    display: block;
     justify-content: flex-start;
 
     p{
