@@ -1,6 +1,7 @@
 import React, { ReactElement, memo } from 'react'
 import styled from 'styled-components'
 import Logo from '../Logo'
+import { useLocation } from 'react-router-dom'
 
 const StyledFooter = memo(styled.section`
     background: white;
@@ -8,11 +9,16 @@ const StyledFooter = memo(styled.section`
     padding: 50px 20px;
     width: 100%;
 
+    &.hide_footer{
+      display: none;
+    }
 `)
 
 const Footer = (): ReactElement => {
+  const { pathname } = useLocation()
+
   return (
-    <StyledFooter>
+    <StyledFooter className={pathname === '/' ? 'hide_footer' : ''}>
       <Logo />
     </StyledFooter>)
 }

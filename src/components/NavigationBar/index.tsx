@@ -1,8 +1,10 @@
+/* eslint-disable @typescript-eslint/strict-boolean-expressions */
 import React, { ReactElement, memo, useEffect, useState } from 'react'
 // import Logo from '../Logo'
 import styled from 'styled-components'
 import Logo from '../Logo'
 import Burguer from './Burguer'
+import { useLocation } from 'react-router-dom'
 
 const Nav = memo(styled.nav`
 	position: sticky;
@@ -24,10 +26,15 @@ const Nav = memo(styled.nav`
 		margin-top: 25px;
 
 	}
+
+  &.hide_navbar{
+    display: none;
+  }
 `)
 
 const NavBar = (): ReactElement => {
   const [offset, setOffset] = useState(0)
+  const { pathname } = useLocation()
 
   useEffect(() => {
     const onScroll = (): void => setOffset(window.pageYOffset)
@@ -38,7 +45,7 @@ const NavBar = (): ReactElement => {
   }, [])
 
   return (
-    <Nav className={offset > 0 ? 'fixed' : ''}>
+    <Nav className={` ${(offset > 0 && pathname !== '/' ? 'fixed' : '')} ${(pathname === '/' ? 'hide_navbar' : '')}` }>
       <div className='logo'>
         <Logo />
       </div>

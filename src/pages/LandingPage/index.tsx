@@ -8,6 +8,7 @@ import Button from '../../components/Button'
 import img from './img/HeroImage.jpg'
 import imgMobile from './img/HeroImageTabletMobile.jpg'
 import Checkmark from './img/Checkmark.svg'
+import { Link } from 'react-router-dom'
 
 const StyledLandingPage = memo(styled.div`
   @media (min-width: 720px) {
@@ -46,11 +47,21 @@ const InfoCamp = memo(styled.div`
     margin-right: 10px;
   }
 
+  .logo{
+    position: absolute;
+    top: 20px;
+  }
+
   @media (min-width: 1020px) {
     display: grid;
     grid-column: 2 / span 4;
     width: 100%;
     padding: 20px 15%;
+
+    .logo{
+      position: relative;
+      top: 20px;
+    }
   }
 `)
 
@@ -95,7 +106,9 @@ const LandingPage = (): ReactElement => {
       <ContainerLP >
         <ImgCamp />
         <InfoCamp>
-          <Logo />
+          <div className='logo'>
+            <Logo />
+          </div>
           <div>
             <Title>Explore the best camps on Earth.</Title>
             <Description>YelpCamp is a curated list od the best camping spots on Earth. Unfiltered and unbiased reviews.</Description>
@@ -104,7 +117,9 @@ const LandingPage = (): ReactElement => {
               <li>Leave reviews and experiences.</li>
               <li>See locations for all camps.</li>
             </Ul>
-            <Button>View Campgrounds</Button>
+            <Link to='/home'>
+              <Button>View Campgrounds</Button>
+            </Link>
             <Partenered />
           </div>
         </InfoCamp>

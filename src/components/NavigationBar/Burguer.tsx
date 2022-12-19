@@ -12,6 +12,10 @@ const StyledDiv = memo(styled.div`
     justify-content: space-around;
     flex-flow: column nowrap;
     z-index: 20;
+
+    &.hide_navbar{
+      display:none;
+    }
 `)
 
 const StyledBurger = memo(styled.div<Props>`
@@ -61,14 +65,15 @@ const StyledBurger = memo(styled.div<Props>`
 
 const Burguer = (): ReactElement => {
   const [open, setOpen] = useState(false)
-  //  const { pathname } = useLocation()
+  const { pathname } = useLocation()
 
-  //   useEffect(() => {
-  //     setOpen(false)
-  //   }, [pathname])
+  useEffect(() => {
+    setOpen(false)
+    console.log(pathname)
+  }, [pathname])
 
   return (
-    <StyledDiv>
+    <StyledDiv className={pathname === '/' ? 'hide_navbar' : ''}>
       <StyledBurger open={open} onClick={() => setOpen(!open)}>
         <div />
         <div />
