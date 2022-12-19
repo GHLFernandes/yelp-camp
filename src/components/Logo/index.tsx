@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { memo } from 'react'
 import styled from 'styled-components'
 
-import Logo from './img/Logo.svg'
+import LogoImg from './img/Logo.svg'
 
 const StyledLogo = styled.div`
     width: 100%;
@@ -16,10 +16,12 @@ const StyledLogo = styled.div`
     }
 `
 
-export default function Header () {
+const Logo = () => {
   return (
     <StyledLogo>
-      <img src={Logo} alt="logo" />
+      <img src={LogoImg} alt="logo" />
     </StyledLogo>
   )
 }
+
+export default memo(Logo)

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { ReactElement, memo } from 'react'
 import styled from 'styled-components'
 
 const StyledDesc = styled.p`
@@ -9,8 +9,10 @@ const StyledDesc = styled.p`
     margin: 10px 0;
 `
 
-export default function Description ({ children }: { children?: React.ReactNode }) {
+const Description = ({ children }: { children?: React.ReactNode }): ReactElement => {
   return (
     <StyledDesc>{children}</StyledDesc>
   )
 }
+
+export default memo(Description)

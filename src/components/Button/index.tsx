@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { ReactElement, memo } from 'react'
 import styled from 'styled-components'
 
 const StyledButton = styled.button`
@@ -11,19 +11,22 @@ const StyledButton = styled.button`
     border-radius: 5px;
     border: none;
     margin: 20px 0;
-    transition: all .1s linear;
+    transition: all .3s linear;
     border: 1px solid transparent;
 
     &:hover, :focus{
         background-color: white;
         color: black;
         border: 1px solid black;
+        cursor: pointer;
     }
 
 `
 
-export default function Button ({ children }: { children?: React.ReactNode }) {
+const Button = ({ children }: { children?: React.ReactNode }): ReactElement => {
   return (
     <StyledButton>{children}</StyledButton>
   )
 }
+
+export default memo(Button)

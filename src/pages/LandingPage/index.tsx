@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { ReactElement, memo } from 'react'
 import styled from 'styled-components'
-import Header from '../../components/Header'
+import Logo from '../../components/Logo'
 import Title from '../../components/Title'
 import Description from '../../components/Description'
 import Partenered from './components/Partenered'
@@ -48,7 +48,7 @@ const InfoCamp = styled.div`
 
   @media (min-width: 1020px) {
     display: grid;
-    grid-column: 2 / span 3;
+    grid-column: 2 / span 4;
     width: 100%;
     padding: 20px 15%;
   }
@@ -89,13 +89,13 @@ const Ul = styled.ul`
   padding: 0;
 `
 
-export default function LandingPage () {
+const LandingPage = (): ReactElement => {
   return (
     <StyledLandingPage>
       <ContainerLP >
         <ImgCamp />
         <InfoCamp>
-          <Header />
+          <Logo />
           <div>
             <Title>Explore the best camps on Earth.</Title>
             <Description>YelpCamp is a curated list od the best camping spots on Earth. Unfiltered and unbiased reviews.</Description>
@@ -112,3 +112,5 @@ export default function LandingPage () {
     </StyledLandingPage>
   )
 }
+
+export default memo(LandingPage)

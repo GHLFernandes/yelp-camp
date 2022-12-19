@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import styled from 'styled-components'
 
 const StyledTitle = styled.h1`
@@ -11,8 +11,10 @@ const StyledTitle = styled.h1`
 
 `
 
-export default function Title ({ children }: { children?: React.ReactNode }) {
+const Title = ({ children }: { children?: React.ReactNode }) => {
   return (
     <StyledTitle>{children}</StyledTitle>
   )
 }
+
+export default memo(Title)
