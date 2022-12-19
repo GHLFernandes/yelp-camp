@@ -1,7 +1,7 @@
 import React, { ReactElement, memo } from 'react'
 import styled from 'styled-components'
 
-const StyledButton = styled.button`
+const StyledButton = memo(styled.button`
     display: inline-block;
     padding: 20px;
     background-color: black;
@@ -20,8 +20,7 @@ const StyledButton = styled.button`
         border: 1px solid black;
         cursor: pointer;
     }
-
-`
+`)
 
 const Button = ({ children }: { children?: React.ReactNode }): ReactElement => {
   return (

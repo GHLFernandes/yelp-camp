@@ -1,16 +1,19 @@
-import React, { ReactElement, memo } from 'react'
+import React, { ReactElement, memo, useEffect, useState } from 'react'
 // import Logo from '../Logo'
 import styled from 'styled-components'
+import Logo from '../Logo'
+import Burguer from './Burguer'
 
 const Nav = memo(styled.nav`
-  position: relative;
-  top: 0;
+	position: sticky;
+	top: 0;
+	height: 80px;
 	width: 100%;
-	height: 65px;
-	border-bottom: 2px solid #f1f1f1;
 	display: flex;
 	justify-content: space-between;
 	z-index: 99;
+  	padding: 10px 20px;
+	background-color: white;
 
 	&.fixed{
 		position: fixed;
@@ -18,13 +21,29 @@ const Nav = memo(styled.nav`
 
 
 	.logo {
-		margin-top: 5px;
+		margin-top: 25px;
+
 	}
 `)
 
 const NavBar = (): ReactElement => {
+  const [offset, setOffset] = useState(0)
+
+  useEffect(() => {
+    const onScroll = (): void => setOffset(window.pageYOffset)
+
+    window.removeEventListener('scroll', onScroll)
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
   return (
-    <Nav>Header </Nav>
+    <Nav className={offset > 0 ? 'fixed' : ''}>
+      <div className='logo'>
+        <Logo />
+      </div>
+      <Burguer />
+    </Nav>
   )
 }
 

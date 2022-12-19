@@ -5,7 +5,7 @@ import { ReactComponent as AirBnb } from './img/Airbnb.svg'
 import { ReactComponent as Booking } from './img/Booking.svg'
 import { ReactComponent as PlumGuide } from './img/Plum Guide.svg'
 
-const StyledPartenered = styled.div`
+const StyledPartenered = memo(styled.div`
     justify-content: flex-start;
 
     p{
@@ -13,7 +13,7 @@ const StyledPartenered = styled.div`
         font-size: 16px;
         line-height: 28px;
     }
-`
+`)
 
 const Partenered = (): ReactElement => {
   return (

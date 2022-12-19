@@ -9,16 +9,16 @@ import img from './img/HeroImage.jpg'
 import imgMobile from './img/HeroImageTabletMobile.jpg'
 import Checkmark from './img/Checkmark.svg'
 
-const StyledLandingPage = styled.div`
+const StyledLandingPage = memo(styled.div`
   @media (min-width: 720px) {
   }
 
   @media (min-width: 1020px) {
     grid-template-rows: auto 1fr;
   }
-`
+`)
 
-const ContainerLP = styled.div`
+const ContainerLP = memo(styled.div`
 
   @media (min-width: 720px) {
   }
@@ -29,9 +29,9 @@ const ContainerLP = styled.div`
     display: grid;
 
   }
-`
+`)
 
-const InfoCamp = styled.div`  
+const InfoCamp = memo(styled.div`  
   grid-area: info;
   padding: 20px 20px 0 20px;
 
@@ -52,9 +52,9 @@ const InfoCamp = styled.div`
     width: 100%;
     padding: 20px 15%;
   }
-`
+`)
 
-const ImgCamp = styled.div`
+const ImgCamp = memo(styled.div`
   grid-area: img;
   background-image: url(${imgMobile});
   background-repeat: no-repeat;
@@ -79,15 +79,15 @@ const ImgCamp = styled.div`
     height: 100vh;
     margin: 0;
   }
-`
+`)
 
-const Ul = styled.ul`
+const Ul = memo(styled.ul`
   list-style: none;
   color: #727272;
   font-size: 18px;
   line-height: 28px;
   padding: 0;
-`
+`)
 
 const LandingPage = (): ReactElement => {
   return (
