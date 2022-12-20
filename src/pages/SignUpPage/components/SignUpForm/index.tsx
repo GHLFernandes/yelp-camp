@@ -4,6 +4,7 @@ import TextInput from '../../../../components/TextInput'
 import styled from 'styled-components'
 
 const StyledSignUpForm = memo(styled.form`
+  padding: 20px 0;
   display: block;
 
 `)

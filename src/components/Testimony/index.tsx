@@ -10,16 +10,23 @@ const StyledTestimony = memo(styled.div`
     @media (min-width: 720px) {
         padding: 40px 8%;
     }
+
+    @media (min-width: 1020px) {
+        display: block;
+        padding: 30vh 22% 0 22%;
+      }
 `)
 
 const QuoteTestimony = memo(styled.h3`
     line-height: 1.8;
     font-size: 21px;
+
 `)
 
 const UserTestimonial = memo(styled.div`
     display: flex;
     padding-bottom: 20px;
+
 `)
 
 const UserInfo = memo(styled.div`

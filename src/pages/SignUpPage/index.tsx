@@ -4,6 +4,7 @@ import Title from '../../components/Title'
 import SignUpForm from './components/SignUpForm'
 import { Link } from 'react-router-dom'
 import Testimony from '../../components/Testimony'
+import Logo from '../../components/Logo'
 
 const Main = memo(styled.div`
     display: grid;
@@ -15,14 +16,47 @@ const Main = memo(styled.div`
     }
   
     @media (min-width: 1020px) {
-        width: 900px;
+        grid-template-rows: 1fr;
+      }
+`)
+
+const SignUpContainer = memo(styled.div`
+
+    .logo{
+        position: absolute;
+        top: 30px;
+        padding: 0 20px;
+    }
+
+    @media (min-width: 720px) {
+        .logo{
+            position: relative;
+            padding: 0 8%;
+            top: 40px;
+          }
+    }
+
+    @media (min-width: 1020px) {
+        grid-template-rows: 1fr;
+        grid-template-columns: repeat(12, 1fr);
+        display: grid;
+
+        .logo{
+            display: grid;
+            padding: 40px 16%;
+            grid-column: 2 / span 3;
+            grid-row: 1 / span 2;
+            top: 0px;
+          }
     }
 `)
 
 const FormContainer = memo(styled.div`
-    display: grid;
-    row-gap: 20px;
-    padding: 10px 20px;
+    grid-area: form;
+    padding: 20px 20px;
+    row-gap: 0px;
+    margin-top: 70px;
+
     .sign-up{
         padding: 0px;
         margin: 0px;
@@ -42,24 +76,46 @@ const FormContainer = memo(styled.div`
     @media (min-width: 720px) {
         padding: 20px 8%;
     }
+
+    @media (min-width: 1020px) {
+        display: grid;
+        grid-column: 2 / span 5;
+        grid-row: 1 / span 2;
+        width: 100%;
+        padding: 60px 12%;
+    
+      }
 `)
 
 const TestimonialsContainer = memo(styled.div`
     display: block;
-    
+
+    @media (min-width: 1020px) {
+        grid-area: testimonials;
+        display: grid;
+        grid-column: 9 / span 12;
+        grid-row: 1 / span 2;
+        width: 100%;
+        height: 100vh;
+      }
 `)
 
 const SignUpPage = (): ReactElement => {
   return (
     <Main>
-      <FormContainer>
-        <Title>Start exploring camps from all around the world.</Title>
-        <SignUpForm />
-        <p className='sign-up'>Already a user? <Link className='sign-up-link' to='sign-in'>Sign in</Link></p>
-      </FormContainer>
-      <TestimonialsContainer>
-        <Testimony />
-      </TestimonialsContainer>
+      <SignUpContainer>
+        <div className='logo'>
+          <Logo />
+        </div>
+        <FormContainer>
+          <Title>Start exploring camps from all around the world.</Title>
+          <SignUpForm />
+          <p className='sign-up'>Already a user? <Link className='sign-up-link' to='sign-in'>Sign in</Link></p>
+        </FormContainer>
+        <TestimonialsContainer>
+          <Testimony />
+        </TestimonialsContainer>
+      </SignUpContainer>
     </Main>
   )
 }

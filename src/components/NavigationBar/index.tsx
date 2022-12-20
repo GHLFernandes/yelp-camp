@@ -53,7 +53,7 @@ const NavBar = (): ReactElement => {
   }, [])
 
   return (
-    <Nav className={` ${(offset > 0 && pathname !== '/' ? 'fixed' : '')} ${(pathname === '/' ? 'hide_navbar' : '')}` }>
+    <Nav className={` ${(offset > 0 && (pathname !== '/' && pathname !== '/sign-up') ? 'fixed' : '')} ${((pathname === '/' || pathname === '/sign-up') ? 'hide_navbar' : '')}` }>
       <div className='logo'>
         <Logo />
       </div>
