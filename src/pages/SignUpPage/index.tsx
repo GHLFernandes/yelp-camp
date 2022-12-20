@@ -56,6 +56,7 @@ const FormContainer = memo(styled.div`
     padding: 20px 20px;
     row-gap: 0px;
     margin-top: 70px;
+    margin-bottom: 20px;
 
     .sign-up{
         padding: 0px;
