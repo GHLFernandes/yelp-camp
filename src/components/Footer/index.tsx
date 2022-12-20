@@ -27,7 +27,7 @@ const Footer = (): ReactElement => {
   const { pathname } = useLocation()
 
   return (
-    <StyledFooter className={pathname === '/' ? 'hide_footer' : ''}>
+    <StyledFooter className={(pathname === '/' || pathname === '/sign-up') ? 'hide_footer' : ''}>
       <Logo />
     </StyledFooter>)
 }

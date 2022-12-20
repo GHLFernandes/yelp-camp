@@ -3,7 +3,7 @@ import React, { ReactElement, memo, useState } from 'react'
 import { styled } from '@mui/material/styles'
 
 const CssTextField = styled(TextField)({
-  backgroundColor: '#efefef',
+  backgroundColor: '#f7f7f7',
   marginBottom: 15,
   '& .MuiInputBase-input': {
     fontSize: 18,
