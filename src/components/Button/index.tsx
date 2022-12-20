@@ -20,11 +20,15 @@ const StyledButton = memo(styled.button`
         border: 1px solid black;
         cursor: pointer;
     }
+
+    &.searchBtn{
+      width: 100%;
+    }
 `)
 
-const Button = ({ children }: { children?: React.ReactNode }): ReactElement => {
+const Button = ({ children, className }: { children?: React.ReactNode, className: string }): ReactElement => {
   return (
-    <StyledButton>{children}</StyledButton>
+    <StyledButton className={className}>{children}</StyledButton>
   )
 }
 
