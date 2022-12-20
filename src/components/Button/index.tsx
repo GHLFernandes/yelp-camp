@@ -21,7 +21,7 @@ const StyledButton = memo(styled.button`
         cursor: pointer;
     }
 
-    &.searchBtn, &.addCampgroundBtn{
+    &.full-width{
       width: 100%;
     }
 `)

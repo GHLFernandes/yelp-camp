@@ -47,8 +47,8 @@ const AddCampground = (): ReactElement => {
           <TextInput type='text' label='Campground Name' id='campground-name' placeholder='Seven Sisters Waterfall'/>
           <TextInput type='number' label='Price' id='price' placeholder='$149'/>
           <TextInput type='text' label='Image' id='img' placeholder='https://images.unsplash.com/photo-1487730116645-74489c95b41b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80'/>
-          <TextArea size={5} label='Description' id='desc' placeholder='https://images.unsplash.com/photo-1487730116645-74489c95b41b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80'/>
-          <Button type='submit' className='addCampgroundBtn'>Add Campground</Button>
+          <TextArea size={5} label='Description' id='desc' placeholder='The Seven Sister is the 39th tallest waterfall in Norway. The 410-meter tall waterfall consists of seven separate streams, and the tallest of the seven has a free fall that measures 250 meters. The waterfall is lcated along the Geirangerfjorden in Stranda Municipality in More og Romsdal county, Norway.'/>
+          <Button type='submit' className='full-width addCampgroundBtn'>Add Campground</Button>
         </Form>
       </Main>
     </StyledAddCampground>

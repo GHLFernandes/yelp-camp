@@ -12,7 +12,7 @@ const SearchForm = (): ReactElement => {
   return (
     <StyledSearchForm>
       <InputText placeholder='Search for camps'/>
-      <Button type='button' className='searchBtn'>Search</Button>
+      <Button type='button' className='full-width searchBtn'>Search</Button>
     </StyledSearchForm>
   )
 }
