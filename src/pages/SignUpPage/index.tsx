@@ -111,7 +111,7 @@ const SignUpPage = (): ReactElement => {
         <FormContainer>
           <Title>Start exploring camps from all around the world.</Title>
           <SignUpForm />
-          <p className='sign-in'>Already a user? <Link className='sign-in-link' to='sign-in'>Sign in</Link></p>
+          <p className='sign-in'>Already a user? <Link className='sign-in-link' to='/sign-in'>Sign in</Link></p>
         </FormContainer>
         <TestimonialsContainer>
           <Testimony />
