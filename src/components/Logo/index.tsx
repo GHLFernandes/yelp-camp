@@ -6,6 +6,10 @@ import { Link } from 'react-router-dom'
 
 const StyledLogo = styled.div`
 
+    img{
+      width: 150px;
+    }
+
     @media (min-width: 1020px) {
         width: 100%;
         position: relative;
