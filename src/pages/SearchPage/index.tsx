@@ -45,7 +45,7 @@ const SearchPage = (): ReactElement => {
           <Title>Welcome to YelpCamp!</Title>
           <Description>View our hand-picked campgrounds from all over the world, or add your own.</Description>
           <SearchForm />
-          <Link className='add-campground' to=''>
+          <Link className='add-campground' to='add-campground'>
             Or add your own campground
           </Link>
         </MainHeader>
