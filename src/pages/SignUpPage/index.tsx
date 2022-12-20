@@ -84,7 +84,8 @@ const FormContainer = memo(styled.div`
         grid-row: 1 / span 2;
         width: 100%;
         padding: 60px 12%;
-    
+        z-index:2;
+
       }
 `)
 

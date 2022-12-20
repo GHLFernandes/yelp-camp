@@ -13,6 +13,10 @@ const Main = memo(styled.div`
   display: grid;
   row-gap: 40px;
   padding: 10px 20px;
+
+  @media (min-width: 720px) {
+    padding: 10px 9%;
+  }
 `)
 
 const MainHeader = memo(styled.div`
@@ -31,8 +35,25 @@ const MainHeader = memo(styled.div`
     }
   }
 
+  @media (min-width: 1020px) {
+    display: grid;
+    padding: 50px 0;
+    grid-template-rows: 1fr;
+    grid-template-columns: repeat(12, 1fr);
+  }
 
 `)
+
+const Container = memo(styled.div`
+ 
+  @media (min-width: 1020px) {
+    display: grid;
+    grid-column: 1 / span 5;
+    padding: 0 15px 0 40px;
+  }
+
+`)
+
 const Campgrounds = memo(styled.div`
 
 `)
@@ -41,13 +62,15 @@ const SearchPage = (): ReactElement => {
   return (
     <StyledSearchPage>
       <Main>
-        <MainHeader >
-          <Title>Welcome to YelpCamp!</Title>
-          <Description>View our hand-picked campgrounds from all over the world, or add your own.</Description>
-          <SearchForm />
-          <Link className='add-campground' to='/add-campground'>
-            Or add your own campground
-          </Link>
+        <MainHeader>
+          <Container>
+            <Title>Welcome to YelpCamp!</Title>
+            <Description>View our hand-picked campgrounds from all over the world, or add your own.</Description>
+            <SearchForm />
+            <Link className='add-campground' to='/add-campground'>
+              Or add your own campground
+            </Link>
+          </Container>
         </MainHeader>
         <Campgrounds>
           List of Campgrounds

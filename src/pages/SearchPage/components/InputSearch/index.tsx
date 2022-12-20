@@ -15,7 +15,7 @@ const CssTextField = styled(TextField)({
 
 })
 
-const InputText = ({ placeholder }: { placeholder: string }): ReactElement => {
+const InputText = ({ placeholder, className }: { placeholder: string, className: string }): ReactElement => {
   const [value, setValue] = useState('')
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
@@ -27,6 +27,7 @@ const InputText = ({ placeholder }: { placeholder: string }): ReactElement => {
       fullWidth
       id="search"
       placeholder={placeholder}
+      className={className}
       margin="dense"
       value={value}
       onChange={handleChange}
