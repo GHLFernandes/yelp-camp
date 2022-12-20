@@ -118,7 +118,7 @@ const LandingPage = (): ReactElement => {
               <li>See locations for all camps.</li>
             </Ul>
             <Link to='/home'>
-              <Button className=''>View Campgrounds</Button>
+              <Button type='button' className=''>View Campgrounds</Button>
             </Link>
             <Partenered />
           </div>

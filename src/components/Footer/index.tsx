@@ -12,6 +12,15 @@ const StyledFooter = memo(styled.section`
     &.hide_footer{
       display: none;
     }
+
+    @media (min-width: 720px) {
+      width: 80%;
+      margin: 0 auto;
+    }
+  
+    @media (min-width: 1020px) {
+  
+    }
 `)
 
 const Footer = (): ReactElement => {

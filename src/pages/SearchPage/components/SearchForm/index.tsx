@@ -1,6 +1,6 @@
 import React, { ReactElement, memo } from 'react'
 import Button from '../../../../components/Button'
-import InputText from '../../../../components/InputText'
+import InputText from '../InputSearch'
 import styled from 'styled-components'
 
 const StyledSearchForm = memo(styled.form`
@@ -11,8 +11,8 @@ const StyledSearchForm = memo(styled.form`
 const SearchForm = (): ReactElement => {
   return (
     <StyledSearchForm>
-      <InputText/>
-      <Button className='searchBtn'>Search</Button>
+      <InputText placeholder='Search for camps'/>
+      <Button type='button' className='searchBtn'>Search</Button>
     </StyledSearchForm>
   )
 }

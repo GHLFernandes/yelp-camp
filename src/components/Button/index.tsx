@@ -21,14 +21,14 @@ const StyledButton = memo(styled.button`
         cursor: pointer;
     }
 
-    &.searchBtn{
+    &.searchBtn, &.addCampgroundBtn{
       width: 100%;
     }
 `)
 
-const Button = ({ children, className }: { children?: React.ReactNode, className: string }): ReactElement => {
+const Button = ({ children, className, type }: { children?: React.ReactNode, className: string, type: string }): ReactElement => {
   return (
-    <StyledButton className={className}>{children}</StyledButton>
+    <StyledButton className={className} type={type}>{children}</StyledButton>
   )
 }
 

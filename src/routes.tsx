@@ -5,6 +5,7 @@ import Footer from './components/Footer'
 
 const LandingPage = lazy(async () => await import('./pages/LandingPage'))
 const SearchPage = lazy(async () => await import('./pages/SearchPage'))
+const AddCampground = lazy(async () => await import('./pages/AddCampground'))
 
 const AppRouter = (): ReactElement => {
   return (
@@ -15,6 +16,7 @@ const AppRouter = (): ReactElement => {
           <Routes>
             <Route index element={<LandingPage />} />
             <Route path='home' element={<SearchPage />} />
+            <Route path='add-campground' element={<AddCampground />} />
           </Routes>
         </Suspense>
         <Footer />

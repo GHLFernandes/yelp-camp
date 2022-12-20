@@ -14,7 +14,7 @@ const Nav = memo(styled.nav`
 	display: flex;
 	justify-content: space-between;
 	z-index: 99;
-  	padding: 10px 20px;
+  padding: 10px 20px;
 	background-color: white;
 
 	&.fixed{
@@ -29,6 +29,14 @@ const Nav = memo(styled.nav`
 
   &.hide_navbar{
     display: none;
+  }
+
+  @media (min-width: 720px) {
+    padding: 10px 9%;
+  }
+
+  @media (min-width: 1020px) {
+
   }
 `)
 
