@@ -1,7 +1,7 @@
 import React, { ReactElement, memo } from 'react'
 import styled from 'styled-components'
 import Title from '../../components/Title'
-import SignUpForm from './components/SignUpForm'
+import SignInForm from './components/SignInForm'
 import { Link } from 'react-router-dom'
 import Testimony from '../../components/Testimony'
 import Logo from '../../components/Logo'
@@ -20,7 +20,7 @@ const Main = memo(styled.div`
       }
 `)
 
-const SignUpContainer = memo(styled.div`
+const SignInContainer = memo(styled.div`
 
     .logo{
         position: absolute;
@@ -58,19 +58,19 @@ const FormContainer = memo(styled.div`
     margin-top: 70px;
     margin-bottom: 20px;
 
-    .sign-in{
+    .sign-up{
         padding: 0px;
         margin: 0px;
         color: #6c6c6c;
     }
 
-    .sign-in-link{
+    .sign-up-link{
         color: #009aca;
         font-weight: 600
 
     }
 
-    .sign-in-link:hover, .sign-in-link:focus{
+    .sign-up-link:hover, .sign-up-link:focus{
         color: #006484;
     }
 
@@ -101,24 +101,24 @@ const TestimonialsContainer = memo(styled.div`
       }
 `)
 
-const SignUpPage = (): ReactElement => {
+const SignInPage = (): ReactElement => {
   return (
     <Main>
-      <SignUpContainer>
+      <SignInContainer>
         <div className='logo'>
           <Logo />
         </div>
         <FormContainer>
           <Title>Start exploring camps from all around the world.</Title>
-          <SignUpForm />
-          <p className='sign-in'>Already a user? <Link className='sign-in-link' to='sign-in'>Sign in</Link></p>
+          <SignInForm />
+          <p className='sign-up'>Not a user yet? <Link className='sign-up-link' to='sign-up'>Create an account</Link></p>
         </FormContainer>
         <TestimonialsContainer>
           <Testimony />
         </TestimonialsContainer>
-      </SignUpContainer>
+      </SignInContainer>
     </Main>
   )
 }
 
-export default memo(SignUpPage)
+export default memo(SignInPage)

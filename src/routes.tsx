@@ -8,6 +8,7 @@ const SearchPage = lazy(async () => await import('./pages/SearchPage'))
 const AddCampground = lazy(async () => await import('./pages/AddCampground'))
 const AddNewComment = lazy(async () => await import('./pages/AddNewComment'))
 const SignUpPage = lazy(async () => await import('./pages/SignUpPage'))
+const SignInPage = lazy(async () => await import('./pages/SignInPage'))
 
 const AppRouter = (): ReactElement => {
   return (
@@ -21,6 +22,7 @@ const AppRouter = (): ReactElement => {
             <Route path='add-campground' element={<AddCampground />} />
             <Route path='add-comment' element={<AddNewComment />} />
             <Route path='sign-up' element={<SignUpPage />} />
+            <Route path='sign-in' element={<SignInPage />} />
           </Routes>
         </Suspense>
         <Footer />
