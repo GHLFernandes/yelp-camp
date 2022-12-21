@@ -2,6 +2,15 @@ import { InputLabel, TextField } from '@mui/material'
 import React, { ReactElement, memo, useState } from 'react'
 import { styled } from '@mui/material/styles'
 
+interface Props {
+  placeholder: string
+  id: string
+  label: string
+  type: string
+  value: string
+  onChange: React.ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement>
+}
+
 const CssTextField = styled(TextField)({
   backgroundColor: '#f7f7f7',
   marginBottom: 15,
@@ -17,13 +26,7 @@ const CssTextField = styled(TextField)({
 
 })
 
-const TextInput = ({ placeholder, id, label, type }: { placeholder: string, id: string, label: string, type: string }): ReactElement => {
-  const [value, setValue] = useState('')
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
-    setValue(event.target.value)
-  }
-
+const TextInput = ({ placeholder, id, label, type, value, onChange }: Props): ReactElement => {
   return (
     <>
       <InputLabel style={{ fontSize: 25 }} shrink htmlFor={id}>
@@ -36,7 +39,7 @@ const TextInput = ({ placeholder, id, label, type }: { placeholder: string, id: 
         placeholder={placeholder}
         margin="dense"
         value={value}
-        onChange={handleChange}
+        onChange={onChange}
       />
     </>
   )

@@ -36,13 +36,21 @@ const Form = memo(styled.form`
 
 const AddNewComment = (): ReactElement => {
   const [values, setValues] = useState(inicialFormValues)
+  const [comment, setComment] = useState('')
 
   return (
     <StyledAddNewComment>
       <Main>
         <Title>Add New Comment</Title>
         <Form>
-          <TextArea size={5} label='Description' id='comment' placeholder={'This was probably the best camp i\'ve visited this past year, definitely recommend visiting any time soon.'}/>
+          <TextArea
+            size={5}
+            label='Description'
+            id='comment'
+            placeholder={'This was probably the best camp i\'ve visited this past year, definitely recommend visiting any time soon.'}
+            value={comment}
+            onChange={(e) => setComment(e.target.value)}
+          />
           <Button type='submit' className='full-width addCommentBtn'>Post Comment</Button>
         </Form>
       </Main>
