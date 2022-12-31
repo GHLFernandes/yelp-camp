@@ -103,10 +103,12 @@ const StyledUser = memo(styled.div`
   font-weight: 700;
   font-size: 18px;
   text-align: end;
+  width: min-content;
 
   div{
     #log-out-navbar{
       color: #7c7c7c;
+      margin-left: 40px;
     }
     #log-out-navbar:hover{
       cursor: pointer;
