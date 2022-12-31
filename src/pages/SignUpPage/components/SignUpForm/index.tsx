@@ -1,11 +1,9 @@
 import React, { ReactElement, memo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { database, auth } from '../../../../firebase.js'
-import { ref, push, child } from 'firebase/database'
 import Button from '../../../../components/Button'
 import TextInput from '../../../../components/TextInput'
 import styled from 'styled-components'
-import { User, createUserWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth'
+import { useUserAuth } from '../../../../common/contexts/UserAuthContext'
 
 const StyledSignUpForm = memo(styled.form`
   padding-top: 20px;
@@ -13,41 +11,24 @@ const StyledSignUpForm = memo(styled.form`
 `)
 
 const SignUpForm = (): ReactElement => {
+  const { signUp, user } = useUserAuth()
   const [email, setEmail] = useState('')
   const [pass, setPass] = useState('')
-  const [user, setUser] = useState<User>()
 
   const navigate = useNavigate()
 
-  onAuthStateChanged(auth, (currentUser) => {
-    if (currentUser !== null) {
-      setUser(currentUser)
-    }
-  })
-
-  const handleSubmit = async (e: any): Promise<any> => {
+  const handleSubmit = async (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>): Promise<void> => {
     e.preventDefault()
     try {
-      const createUser = await createUserWithEmailAndPassword(auth, email, pass)
+      await signUp(email, pass)
       navigate('/home')
     } catch (error: unknown) {
       console.log(error)
     }
-
-    const obj = {
-      email,
-      password: pass
-    }
-
-    const newPostKey = push(child(ref(database), 'posts')).key
-    const updates: any = {}
-    updates['/' + newPostKey] = obj
-
-    return updates(ref(database), updates)
   }
 
   return (
-    <StyledSignUpForm onSubmit={async (e: any) => await handleSubmit(e)}>
+    <StyledSignUpForm onSubmit={async (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => await handleSubmit(e)}>
       <TextInput
         placeholder='johndoe_91@example.com'
         id='email'
@@ -64,7 +45,6 @@ const SignUpForm = (): ReactElement => {
         value={pass}
         onChange={(e) => setPass(e.target.value)}
       />
-      {user?.email}
       <Button type='submit' className='full-width createAccountBtn'>Create an account</Button>
     </StyledSignUpForm>
   )

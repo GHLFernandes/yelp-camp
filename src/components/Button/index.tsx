@@ -24,6 +24,7 @@ const StyledButton = memo(styled.button`
     &.full-width{
       width: 100%;
     }
+
 `)
 
 const Button = ({ children, className, type }: { children?: React.ReactNode, className: string, type: string }): ReactElement => {

@@ -7,12 +7,12 @@ import Burguer from './Burguer'
 import { useLocation } from 'react-router-dom'
 
 const Nav = memo(styled.nav`
-	position: sticky;
+	position: relative;
 	top: 0;
 	height: 80px;
 	width: 100%;
 	display: flex;
-	justify-content: space-between;
+	justify-content: space-around;
 	z-index: 99;
   padding: 10px 20px;
 	background-color: white;
@@ -21,10 +21,8 @@ const Nav = memo(styled.nav`
 		position: fixed;
 	}
 
-
 	.logo {
 		margin-top: 25px;
-
 	}
 
   &.hide_navbar{
@@ -36,7 +34,18 @@ const Nav = memo(styled.nav`
   }
 
   @media (min-width: 1020px) {
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: repeat(12, 1fr);
+    max-width: 100%;
+    padding: 0;
+    margin: 10px 0;
 
+    .logo {
+      display: grid;
+      grid-row: 1;
+      grid-column: 2;
+    }
   }
 `)
 
@@ -53,11 +62,12 @@ const NavBar = (): ReactElement => {
   }, [])
 
   return (
+
     <Nav className={` ${(offset > 0 && (pathname !== '/' && pathname !== '/sign-up' && pathname !== '/sign-in') ? 'fixed' : '')} ${((pathname === '/' || pathname === '/sign-up' || pathname === '/sign-in') ? 'hide_navbar' : '')}` }>
       <div className='logo'>
         <Logo />
       </div>
-      <Burguer />
+      <Burguer/>
     </Nav>
   )
 }

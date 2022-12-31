@@ -16,6 +16,18 @@ const StyledDiv = memo(styled.div`
     &.hide_navbar{
       display:none;
     }
+
+    @media (min-width: 1020px) {
+      display: grid;
+      width: 100%;
+      justify-content: initial;
+      grid-row: 1;
+      grid-column: 3 / span 9;
+
+      &.hide_navbar{
+        display:block;
+      }
+    }
 `)
 
 const StyledBurger = memo(styled.div<Props>`
@@ -32,11 +44,7 @@ const StyledBurger = memo(styled.div<Props>`
   justify-content: space-around;
   flex-flow: column nowrap;
   row-gap: 2px;
-
-  @media (min-width: 1020px) {
-    display: none;
-  }
-
+   
   div {
     width: 1rem;
     height: 0.15rem;
@@ -61,6 +69,10 @@ const StyledBurger = memo(styled.div<Props>`
       margin-left:  ${({ open }) => open ? '2px' : '0'};
     }
   }
+
+  @media (min-width: 1020px) {
+      display:none
+  }
 `)
 
 const Burguer = (): ReactElement => {
@@ -73,7 +85,7 @@ const Burguer = (): ReactElement => {
   }, [pathname])
 
   return (
-    <StyledDiv className={pathname === '/' ? 'hide_navbar' : ''}>
+    <StyledDiv>
       <StyledBurger open={open} onClick={() => setOpen(!open)}>
         <div />
         <div />

@@ -2,6 +2,7 @@ import React, { ReactElement, lazy, Suspense } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import NavigationBar from './components/NavigationBar'
 import Footer from './components/Footer'
+import ProtectedRoute from './components/ProtectedRoute'
 
 const LandingPage = lazy(async () => await import('./pages/LandingPage'))
 const SearchPage = lazy(async () => await import('./pages/SearchPage'))
@@ -19,8 +20,20 @@ const AppRouter = (): ReactElement => {
           <Routes>
             <Route index element={<LandingPage />} />
             <Route path='home' element={<SearchPage />} />
-            <Route path='add-campground' element={<AddCampground />} />
-            <Route path='add-comment' element={<AddNewComment />} />
+            <Route
+              path='add-campground'
+              element={
+                <ProtectedRoute>
+                  <AddCampground />
+                </ProtectedRoute>}
+            />
+            <Route
+              path='add-comment'
+              element={
+                <ProtectedRoute>
+                  <AddNewComment />
+                </ProtectedRoute>}
+            />
             <Route path='sign-up' element={<SignUpPage />} />
             <Route path='sign-in' element={<SignInPage />} />
           </Routes>

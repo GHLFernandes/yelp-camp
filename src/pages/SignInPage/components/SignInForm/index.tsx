@@ -1,9 +1,9 @@
 import React, { ReactElement, memo, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import Button from '../../../../components/Button'
 import TextInput from '../../../../components/TextInput'
 import styled from 'styled-components'
-import { auth } from '../../../../firebase.js'
-import { User, signInWithEmailAndPassword } from 'firebase/auth'
+import { useUserAuth } from '../../../../common/contexts/UserAuthContext'
 
 const StyledSignInForm = memo(styled.form`
   padding-top: 20px;
@@ -11,14 +11,16 @@ const StyledSignInForm = memo(styled.form`
 `)
 
 const SignInForm = (): ReactElement => {
+  const { signIn } = useUserAuth()
   const [email, setEmail] = useState('')
   const [pass, setPass] = useState('')
-  const [user, setUser] = useState<User>()
+  const navigate = useNavigate()
 
   const handleSubmit = async (e: { preventDefault: () => void }): Promise<any> => {
     e.preventDefault()
     try {
-      const createUser = await signInWithEmailAndPassword(auth, email, pass)
+      await signIn(email, pass)
+      navigate('/home')
     } catch (error: unknown) {
       console.log(error)
     }
@@ -43,8 +45,6 @@ const SignInForm = (): ReactElement => {
         value={pass}
         onChange={(e) => setPass(e.target.value)}
       />
-      {user?.email}
-
       <Button type='submit' className='full-width loginBtn'>Login</Button>
     </StyledSignInForm>
   )

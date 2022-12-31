@@ -1,3 +1,4 @@
 *.css
 *.svg
 firebase.js
+authReducers.js
