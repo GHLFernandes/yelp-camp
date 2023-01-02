@@ -12,7 +12,7 @@ const Nav = memo(styled.nav`
 	height: 80px;
 	width: 100%;
 	display: flex;
-	justify-content: space-around;
+  justify-content: space-between;
 	z-index: 99;
   padding: 10px 20px;
 	background-color: white;
@@ -30,7 +30,7 @@ const Nav = memo(styled.nav`
   }
 
   @media (min-width: 720px) {
-    padding: 10px 9%;
+    padding: 10px 11%;
   }
 
   @media (min-width: 1020px) {
@@ -40,6 +40,7 @@ const Nav = memo(styled.nav`
     max-width: 100%;
     padding: 0;
     margin: 10px 0;
+    justify-content: space-around;
 
     .logo {
       display: grid;

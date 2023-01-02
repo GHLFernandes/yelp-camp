@@ -8,6 +8,7 @@ import { useUserAuth } from '../../common/contexts/UserAuthContext'
 
 const StyledSearchPage = memo(styled.div`
   display: grid;
+  padding: 20px;
 
   @media (min-width: 1020px) {
     display: grid;
