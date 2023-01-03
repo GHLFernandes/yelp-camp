@@ -19,7 +19,7 @@ const AppRouter = (): ReactElement => {
         <Suspense fallback={<p> Carregando...</p>}>
           <Routes>
             <Route index element={<LandingPage />} />
-            <Route path='home' element={<SearchPage />} />
+            <Route path='camps' element={<SearchPage />} />
             <Route
               path='add-campground'
               element={

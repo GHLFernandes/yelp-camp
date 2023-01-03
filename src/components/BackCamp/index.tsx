@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 const BackCamp = (): ReactElement => {
   return (
-    <Link to='/home'>
+    <Link to='/camps'>
       <p><span>&#8592;</span>Back to Campgrounds</p>
     </Link>
   )
