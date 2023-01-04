@@ -39,7 +39,6 @@ const Nav = memo(styled.nav`
     grid-template-columns: repeat(12, 1fr);
     max-width: 100%;
     padding: 0;
-    margin: 10px 0;
     justify-content: space-around;
 
     .logo {

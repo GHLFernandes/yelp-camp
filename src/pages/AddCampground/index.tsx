@@ -1,17 +1,13 @@
 import React, { ReactElement, memo, useState } from 'react'
-import { Box, FormControl } from '@mui/material'
+import { v4 as uuid } from 'uuid'
 import styled from 'styled-components'
 import Title from '../../components/Title'
 import TextInput from '../../components/TextInput'
 import Button from '../../components/Button'
 import TextArea from '../../components/TextArea'
-
-const inicialFormValues = {
-  id: 0,
-  campgroundName: '',
-  price: '',
-  image: ''
-}
+import { addDoc, collection } from 'firebase/firestore'
+import { db } from '../../firebase'
+import { useNavigate } from 'react-router-dom'
 
 const StyledAddCampground = memo(styled.div`
     display: grid;
@@ -37,17 +33,41 @@ const Form = memo(styled.form`
 `)
 
 const AddCampground = (): ReactElement => {
-  const [values, setValues] = useState(inicialFormValues)
+  const unique_id = uuid()
+  const [id, setId] = useState(unique_id)
   const [campgroundName, setCampgroundName] = useState('')
-  const [price, setPrice] = useState('0')
+  const [price, setPrice] = useState('')
   const [img, setImg] = useState('')
   const [desc, setDesc] = useState('')
+  const navigate = useNavigate()
+
+  const handleSubmit = async (e: { preventDefault: () => void }): Promise<any> => {
+    e.preventDefault()
+
+    const campsColRef = collection(db, 'camps')
+
+    await addDoc(campsColRef, {id, campgroundName, price, img, desc})
+      .then(res => {
+        console.log('Dado inserido')
+        navigate('/camps')
+
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
 
   return (
     <StyledAddCampground>
       <Main>
         <Title>Add New Campground</Title>
-        <Form>
+        <Form onSubmit={async (e: React.FormEvent<HTMLInputElement>) => await handleSubmit(e)}>
+          <input
+            type='text'
+            hidden
+            id='uuidv4'
+            value={id}
+          />
           <TextInput
             type='text'
             label='Campground Name'

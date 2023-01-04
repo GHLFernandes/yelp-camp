@@ -25,7 +25,7 @@ const SignInForm = (): ReactElement => {
     e.preventDefault()
     try {
       await signIn(email, pass)
-      navigate('/home')
+      navigate('/camps')
     } catch (error: unknown) {
       console.log(error)
     }
@@ -34,14 +34,14 @@ const SignInForm = (): ReactElement => {
   const handleGoogleSignIn = async (): Promise<void> => {
     try {
       await googleSignIn()
-      navigate('/home')
+      navigate('/camps')
     } catch (error: unknown) {
       console.log(error)
     }
   }
   return (
     <>
-      <StyledSignInForm onSubmit={async (e: any) => await handleSubmit(e)}>
+      <StyledSignInForm onSubmit={async (e: React.FormEvent<HTMLInputElement>) => await handleSubmit(e)}>
         <TextInput
           placeholder='johndoe_91'
           id='email'

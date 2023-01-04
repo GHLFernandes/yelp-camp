@@ -4,7 +4,6 @@ import styled from 'styled-components'
 import routes from '../../_routes'
 import { Link, Navigate, useNavigate } from 'react-router-dom'
 import { useUserAuth } from '../../common/contexts/UserAuthContext'
-import Button from '../Button'
 
 export interface Props {
   open: boolean
@@ -163,7 +162,7 @@ const StyledAnonymous = memo(styled.div`
 
 const RightNav = ({ open }: { open: boolean }): ReactElement => {
   const [isOpen, setIsOpen] = useState(open)
-  const { user, signOutUser } = useUserAuth()
+  const { signOutUser, user } = useUserAuth()
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -196,7 +195,7 @@ const RightNav = ({ open }: { open: boolean }): ReactElement => {
             </StyledLink>
           )
         )}
-        {((user === null || user === undefined)
+        {((!user)
           ? <StyledAnonymous>
             <Link to='/sign-in'>
               <span>Login</span>
