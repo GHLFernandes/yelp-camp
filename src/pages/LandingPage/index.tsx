@@ -117,7 +117,7 @@ const LandingPage = (): ReactElement => {
               <li>Leave reviews and experiences.</li>
               <li>See locations for all camps.</li>
             </Ul>
-            <Link to='/home'>
+            <Link to='/camps'>
               <Button type='button' className=''>View Campgrounds</Button>
             </Link>
             <Partenered />

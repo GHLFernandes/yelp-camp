@@ -21,7 +21,7 @@ const SignUpForm = (): ReactElement => {
     e.preventDefault()
     try {
       await signUp(email, pass)
-      navigate('/home')
+      navigate('/camps')
     } catch (error: unknown) {
       console.log(error)
     }

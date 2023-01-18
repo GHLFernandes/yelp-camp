@@ -1,17 +1,15 @@
-import React, { ReactElement, memo } from 'react'
-import { useUserAuth } from '../../common/contexts/UserAuthContext'
+import React, { ReactElement, memo, useEffect, useState } from 'react'
 import { Navigate } from 'react-router-dom'
+import { useUserAuth } from '../../common/contexts/UserAuthContext'
 
 interface Props {
   children: JSX.Element
 }
 
 const ProtectedRoute = ({ children }: Props): ReactElement => {
-  const { user } = useUserAuth()
+  const { currentUser } = useUserAuth()
 
-  console.log(user)
-
-  if (user === null || user === undefined) {
+  if (!currentUser) {
     return <Navigate to="/sign-in" />
   }
 

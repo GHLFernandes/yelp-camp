@@ -5,6 +5,7 @@ import SignInForm from './components/SignInForm'
 import { Link } from 'react-router-dom'
 import Testimony from '../../components/Testimony'
 import Logo from '../../components/Logo'
+import BackCamp from '../../components/BackCamp'
 
 const Main = memo(styled.div`
     display: grid;
@@ -21,19 +22,39 @@ const Main = memo(styled.div`
 `)
 
 const SignInContainer = memo(styled.div`
-
     .logo{
         position: absolute;
+        display: block;
         top: 30px;
         padding: 0 20px;
     }
 
+    .back-camp{
+      float: right;
+      margin-top: 45px;
+      margin-right: 20px;
+
+      a{
+        text-decoration: none;
+        color: #6B6874;
+      }
+
+      span{
+        font-size: 25px;
+      }
+    }
+
     @media (min-width: 720px) {
         .logo{
-            position: relative;
-            padding: 0 8%;
-            top: 40px;
-          }
+          position: relative;
+          padding: 0 8%;
+          top: 40px;
+        }
+        
+        .back-camp{
+          margin-top: -10px;
+          margin-right: 9%;
+        }
     }
 
     @media (min-width: 1020px) {
@@ -45,9 +66,20 @@ const SignInContainer = memo(styled.div`
             display: grid;
             padding: 40px 20%;
             grid-column: 2 / span 3;
-            grid-row: 1 / span 2;
+            grid-row: 1;
             top: 0px;
           }
+
+        .back-camp{
+          display: grid;
+          padding: 30px;
+          grid-column: 6 / span 3;
+          grid-row: 1;
+
+          span{
+            font-size: 30px;
+          }
+        }
     }
 `)
 
@@ -107,6 +139,9 @@ const SignInPage = (): ReactElement => {
       <SignInContainer>
         <div className='logo'>
           <Logo />
+        </div>
+        <div className='back-camp'>
+          <BackCamp />
         </div>
         <FormContainer>
           <Title>Start exploring camps from all around the world.</Title>

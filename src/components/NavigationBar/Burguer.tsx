@@ -70,8 +70,12 @@ const StyledBurger = memo(styled.div<Props>`
     }
   }
 
+  @media (min-width: 720px) {
+    right: 85px;
+  }
+
   @media (min-width: 1020px) {
-      display:none
+    display:none
   }
 `)
 

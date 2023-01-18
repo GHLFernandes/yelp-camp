@@ -5,6 +5,7 @@ import SignUpForm from './components/SignUpForm'
 import { Link } from 'react-router-dom'
 import Testimony from '../../components/Testimony'
 import Logo from '../../components/Logo'
+import BackCamp from '../../components/BackCamp'
 
 const Main = memo(styled.div`
     display: grid;
@@ -21,34 +22,65 @@ const Main = memo(styled.div`
 `)
 
 const SignUpContainer = memo(styled.div`
+.logo{
+  position: absolute;
+  display: block;
+  top: 30px;
+  padding: 0 20px;
+}
 
-    .logo{
-        position: absolute;
-        top: 30px;
-        padding: 0 20px;
+.back-camp{
+float: right;
+margin-top: 45px;
+margin-right: 20px;
+
+a{
+  text-decoration: none;
+  color: #6B6874;
+}
+
+span{
+  font-size: 25px;
+}
+}
+
+@media (min-width: 720px) {
+  .logo{
+    position: relative;
+    padding: 0 8%;
+    top: 40px;
+  }
+  
+  .back-camp{
+    margin-top: -10px;
+    margin-right: 9%;
+  }
+}
+
+@media (min-width: 1020px) {
+  grid-template-rows: 1fr;
+  grid-template-columns: repeat(12, 1fr);
+  display: grid;
+
+  .logo{
+      display: grid;
+      padding: 40px 20%;
+      grid-column: 2 / span 3;
+      grid-row: 1;
+      top: 0px;
     }
 
-    @media (min-width: 720px) {
-        .logo{
-            position: relative;
-            padding: 0 8%;
-            top: 40px;
-          }
-    }
+  .back-camp{
+    display: grid;
+    padding: 30px;
+    grid-column: 6 / span 3;
+    grid-row: 1;
 
-    @media (min-width: 1020px) {
-        grid-template-rows: 1fr;
-        grid-template-columns: repeat(12, 1fr);
-        display: grid;
-
-        .logo{
-            display: grid;
-            padding: 40px 20%;
-            grid-column: 2 / span 3;
-            grid-row: 1 / span 2;
-            top: 0px;
-          }
+    span{
+      font-size: 30px;
     }
+  }
+}
 `)
 
 const FormContainer = memo(styled.div`
@@ -108,6 +140,9 @@ const SignUpPage = (): ReactElement => {
       <SignUpContainer>
         <div className='logo'>
           <Logo />
+        </div>
+        <div className='back-camp'>
+          <BackCamp />
         </div>
         <FormContainer>
           <Title>Start exploring camps from all around the world.</Title>

@@ -4,10 +4,10 @@ import Title from '../../components/Title'
 import Description from '../../components/Description'
 import SearchForm from './components/SearchForm'
 import { Link } from 'react-router-dom'
-import { useUserAuth } from '../../common/contexts/UserAuthContext'
 
 const StyledSearchPage = memo(styled.div`
   display: grid;
+  padding: 20px;
 
   @media (min-width: 1020px) {
     display: grid;
@@ -73,9 +73,6 @@ const Campgrounds = memo(styled.div`
 `)
 
 const SearchPage = (): ReactElement => {
-  const { user } = useUserAuth()
-
-  console.log(user)
   return (
     <StyledSearchPage>
       <Main>
