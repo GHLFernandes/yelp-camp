@@ -1,4 +1,4 @@
-import React, { ReactElement, memo } from 'react'
+import React, { memo } from 'react'
 import styled from 'styled-components'
 import Title from '../../components/Title'
 import Description from '../../components/Description'
@@ -72,7 +72,7 @@ const Campgrounds = memo(styled.div`
 
 `)
 
-const SearchPage = (): ReactElement => {
+const SearchPage: React.FunctionComponent = props => {
   return (
     <StyledSearchPage>
       <Main>

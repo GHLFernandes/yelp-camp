@@ -20,6 +20,7 @@
         "react-hooks"
     ],
     "rules": {
+        "no-shadow": "off",
         "no-use-before-define": "off",
         "@typescript-eslint/restrict-plus-operands": "off",
         "@typescript-eslint/no-use-before-define": ["error"],
@@ -28,7 +29,7 @@
         "react-hooks/rules-of-hooks": "error",
         "react-hooks/exhaustive-deps": "warn",
         "no-shadow": "off",
-        "@typescript-eslint/no-shadow": ["error"],
+        "@typescript-eslint/no-shadow": "warn",
         "indent": ["error", 2, { "MemberExpression" : 1}],
         "no-tabs": ["error", { "allowIndentationTabs": true }],
         "linebreak-style": [

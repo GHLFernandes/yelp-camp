@@ -1,8 +1,6 @@
-import React, { ReactElement, memo, useState } from 'react'
-import { Box, FormControl } from '@mui/material'
+import React, { memo, useState } from 'react'
 import styled from 'styled-components'
 import Title from '../../components/Title'
-import TextInput from '../../components/TextInput'
 import Button from '../../components/Button'
 import TextArea from '../../components/TextArea'
 
@@ -34,8 +32,7 @@ const Form = memo(styled.form`
 
 `)
 
-const AddNewComment = (): ReactElement => {
-  const [values, setValues] = useState(inicialFormValues)
+const AddNewComment: React.FunctionComponent = props => {
   const [comment, setComment] = useState('')
 
   return (

@@ -1,10 +1,14 @@
 /* eslint-disable @typescript-eslint/strict-boolean-expressions */
-import React, { ReactElement, memo, useEffect, useState } from 'react'
+import React, { FunctionComponent, memo, useEffect, useState } from 'react'
 // import Logo from '../Logo'
 import styled from 'styled-components'
 import Logo from '../Logo'
 import Burguer from './Burguer'
 import { useLocation } from 'react-router-dom'
+
+interface NavBarProps {
+  loggedIn: boolean
+}
 
 const Nav = memo(styled.nav`
 	position: relative;
@@ -49,9 +53,16 @@ const Nav = memo(styled.nav`
   }
 `)
 
-const NavBar = (): ReactElement => {
+const NavBar: FunctionComponent<NavBarProps> = (props) => {
+  const [open, setOpen] = useState(false)
+  const { loggedIn } = props
   const [offset, setOffset] = useState(0)
   const { pathname } = useLocation()
+
+  useEffect(() => {
+    setOpen(false)
+    console.log(pathname)
+  }, [pathname])
 
   useEffect(() => {
     const onScroll = (): void => setOffset(window.pageYOffset)
@@ -67,7 +78,7 @@ const NavBar = (): ReactElement => {
       <div className='logo'>
         <Logo />
       </div>
-      <Burguer/>
+      <Burguer loggedIn={loggedIn} open={open} setOpen={setOpen}/>
     </Nav>
   )
 }

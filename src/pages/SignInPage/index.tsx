@@ -1,4 +1,4 @@
-import React, { ReactElement, memo } from 'react'
+import React, { memo } from 'react'
 import styled from 'styled-components'
 import Title from '../../components/Title'
 import SignInForm from './components/SignInForm'
@@ -133,7 +133,7 @@ const TestimonialsContainer = memo(styled.div`
       }
 `)
 
-const SignInPage = (): ReactElement => {
+const SignInPage: React.FunctionComponent = props => {
   return (
     <Main>
       <SignInContainer>

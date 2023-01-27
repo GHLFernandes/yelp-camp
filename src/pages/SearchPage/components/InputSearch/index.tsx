@@ -1,5 +1,5 @@
 import { InputAdornment, TextField } from '@mui/material'
-import React, { ReactElement, memo, useState } from 'react'
+import React, { FunctionComponent, memo, useState } from 'react'
 import { styled } from '@mui/material/styles'
 import { Search } from '@mui/icons-material'
 
@@ -15,7 +15,13 @@ const CssTextField = styled(TextField)({
 
 })
 
-const InputText = ({ placeholder, className }: { placeholder: string, className: string }): ReactElement => {
+interface InputTextProps {
+  placeholder: string
+  className: string
+}
+
+const InputText: FunctionComponent<InputTextProps> = (props) => {
+  const { placeholder, className } = props
   const [value, setValue] = useState('')
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {

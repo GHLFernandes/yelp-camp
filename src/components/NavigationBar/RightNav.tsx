@@ -1,11 +1,13 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
-import React, { ReactElement, memo, useEffect, useState } from 'react'
+import React, { FunctionComponent, memo, useEffect, useState } from 'react'
 import styled from 'styled-components'
 import routes from '../../_routes'
-import { Link, Navigate, useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useUserAuth } from '../../common/contexts/UserAuthContext'
+import { auth } from '../../config/firebase'
 
-export interface Props {
+interface NavProps {
+  loggedIn: boolean
   open: boolean
 }
 
@@ -16,7 +18,7 @@ const StyledRightNav = memo(styled.div`
   margin-left: 20px;
 `)
 
-const List = memo(styled.ul<Props>`
+const List = memo(styled.ul<NavProps>`
   list-style: none;
   display: flex;
 
@@ -160,10 +162,12 @@ const StyledAnonymous = memo(styled.div`
 }
 `)
 
-const RightNav = ({ open }: { open: boolean }): ReactElement => {
+const RightNav: FunctionComponent<NavProps> = (props) => {
+  const { loggedIn, open } = props
+  const { signOutUser } = useUserAuth()
   const [isOpen, setIsOpen] = useState(open)
-  const { signOutUser, user } = useUserAuth()
   const navigate = useNavigate()
+  const user = auth.currentUser
 
   useEffect(() => {
     setIsOpen(open)
@@ -195,7 +199,7 @@ const RightNav = ({ open }: { open: boolean }): ReactElement => {
             </StyledLink>
           )
         )}
-        {((!user)
+        {((!loggedIn)
           ? <StyledAnonymous>
             <Link to='/sign-in'>
               <span>Login</span>
@@ -206,7 +210,7 @@ const RightNav = ({ open }: { open: boolean }): ReactElement => {
           </StyledAnonymous>
           : <StyledUser>
             <div>
-              {user.email}
+              {user?.email}
             </div>
             <div>
               <span id='log-out-navbar' onClick={handleLogout}>

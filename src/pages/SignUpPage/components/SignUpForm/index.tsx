@@ -1,4 +1,4 @@
-import React, { ReactElement, memo, useState } from 'react'
+import React, { FunctionComponent, memo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Button from '../../../../components/Button'
 import TextInput from '../../../../components/TextInput'
@@ -10,25 +10,48 @@ const StyledSignUpForm = memo(styled.form`
   display: block;
 `)
 
-const SignUpForm = (): ReactElement => {
-  const { signUp, user } = useUserAuth()
+const SignUpForm: FunctionComponent = (props) => {
+  const { signUp, erro, setErro } = useUserAuth()
   const [email, setEmail] = useState('')
   const [pass, setPass] = useState('')
+  const [confirm, setConfirm] = useState('')
+  const [registering, setRegistering] = useState(false)
 
   const navigate = useNavigate()
 
-  const handleSubmit = async (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>): Promise<void> => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault()
-    try {
-      await signUp(email, pass)
-      navigate('/camps')
-    } catch (error: unknown) {
-      console.log(error)
+
+    if (pass !== confirm) {
+      setErro('Please make sure your password match.')
+      return
     }
+
+    if (erro.code === 'auth/weak-password') {
+      setErro('Please enter a stronger password.')
+      return
+    } else if (erro.code === 'auth/email-already-in-use') {
+      setErro('Email already in use.')
+      return
+    } else {
+      setErro('Unable to register. Please try again later.')
+    }
+
+    if (erro !== '') setErro('')
+
+    setRegistering(true)
+
+    await signUp(email, pass)
+      .then(() => {
+        navigate('/')
+      })
+      .catch((error: { code: string | string[] }) => {
+        console.log(error)
+      })
   }
 
   return (
-    <StyledSignUpForm onSubmit={async (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => await handleSubmit(e)}>
+    <StyledSignUpForm onSubmit={ async (e: any) => await handleSubmit(e)}>
       <TextInput
         placeholder='johndoe_91@example.com'
         id='email'
@@ -45,7 +68,15 @@ const SignUpForm = (): ReactElement => {
         value={pass}
         onChange={(e) => setPass(e.target.value)}
       />
-      <Button type='submit' className='full-width createAccountBtn'>Create an account</Button>
+      <TextInput
+        placeholder='Confirm Password'
+        id='confirm-password'
+        label='Confirm Password'
+        type='password'
+        value={confirm}
+        onChange={(e) => setConfirm(e.target.value)}
+      />
+      <Button type='submit' className='full-width createAccountBtn' disabled={registering}>Create an account</Button>
     </StyledSignUpForm>
   )
 }

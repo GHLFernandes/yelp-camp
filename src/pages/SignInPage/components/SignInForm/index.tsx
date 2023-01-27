@@ -1,4 +1,4 @@
-import React, { ReactElement, memo, useState } from 'react'
+import React, { memo, useState, FunctionComponent } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Button from '../../../../components/Button'
 import TextInput from '../../../../components/TextInput'
@@ -15,33 +15,64 @@ const StyledSignInForm = memo(styled.form`
   }
 `)
 
-const SignInForm = (): ReactElement => {
-  const { signIn, googleSignIn } = useUserAuth()
+const SignInForm: FunctionComponent = () => {
+  const { signIn, googleSignIn, erro, setErro } = useUserAuth()
   const [email, setEmail] = useState('')
   const [pass, setPass] = useState('')
+  const [authenticating, setAuthenticating] = useState(false)
+
   const navigate = useNavigate()
 
-  const handleSubmit = async (e: { preventDefault: () => void }): Promise<any> => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault()
-    try {
-      await signIn(email, pass)
-      navigate('/camps')
-    } catch (error: unknown) {
-      console.log(error)
+
+    if (erro !== '') setErro('')
+
+    if (erro.code === 'auth/network-request-failed') {
+      setErro('Password wrong! Please try again with valid credential.')
+      return
+    } else if (erro.code === 'auth/email-already-in-use') {
+      setErro('Email already in use.')
+      return
+    } else if (erro.code === 'auth/invalid-email' || erro.code === 'auth/user-not-found)') {
+      setErro('Invalid e-mail. Please try again with valid credentials.')
+      return
     }
+
+    setAuthenticating(true)
+
+    await signIn(email, pass)
+      .then((result: any) => {
+        navigate('/')
+        console.log(result)
+      })
+      .catch((error: { message: string, code: string }) => {
+        console.log(error)
+        setAuthenticating(false)
+        setErro(error.message)
+      })
   }
 
   const handleGoogleSignIn = async (): Promise<void> => {
-    try {
-      await googleSignIn()
-      navigate('/camps')
-    } catch (error: unknown) {
-      console.log(error)
-    }
+    if (erro !== '') setErro('')
+
+    setAuthenticating(true)
+
+    await googleSignIn()
+      .then((result: any) => {
+        console.log(result)
+        navigate('/')
+      })
+      .catch((error: { message: any }) => {
+        console.log(error)
+        setAuthenticating(false)
+        setErro(error.message)
+      })
   }
+
   return (
     <>
-      <StyledSignInForm onSubmit={async (e: React.FormEvent<HTMLInputElement>) => await handleSubmit(e)}>
+      <StyledSignInForm onSubmit={ async (e: any) => await handleSubmit(e) }>
         <TextInput
           placeholder='johndoe_91'
           id='email'
@@ -59,7 +90,7 @@ const SignInForm = (): ReactElement => {
           value={pass}
           onChange={(e) => setPass(e.target.value)}
         />
-        <Button type='submit' className='full-width loginBtn'>Login</Button>
+        <Button type='submit' className='full-width loginBtn' disabled={authenticating}>Login</Button>
         {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
         <GoogleButton className='g-btn' type='dark' onClick={ async () => await handleGoogleSignIn() }/>
       </StyledSignInForm>

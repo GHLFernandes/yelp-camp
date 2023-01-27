@@ -1,4 +1,4 @@
-import React, { ReactElement, memo } from 'react'
+import React, { memo } from 'react'
 import styled from 'styled-components'
 
 import { ReactComponent as AirBnb } from './img/Airbnb.svg'
@@ -15,7 +15,7 @@ const StyledPartenered = memo(styled.div`
     }
 `)
 
-const Partenered = (): ReactElement => {
+const Partenered: React.FunctionComponent = props => {
   return (
     <StyledPartenered>
       <p>Partnered with:</p>

@@ -1,10 +1,11 @@
-import React, { memo, ReactElement, useEffect, useState } from 'react'
-import { useLocation } from 'react-router-dom'
+import React, { FunctionComponent, memo, useEffect, useState } from 'react'
 import styled from 'styled-components'
 import RightNav from './RightNav'
 
-export interface Props {
+export interface BurguerProps {
   open: boolean
+  loggedIn: boolean
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 const StyledDiv = memo(styled.div`
@@ -30,7 +31,7 @@ const StyledDiv = memo(styled.div`
     }
 `)
 
-const StyledBurger = memo(styled.div<Props>`
+const StyledBurger = memo(styled.div<BurguerProps>`
   width: 1rem;
   height: 1rem;
   position: fixed;
@@ -79,14 +80,8 @@ const StyledBurger = memo(styled.div<Props>`
   }
 `)
 
-const Burguer = (): ReactElement => {
-  const [open, setOpen] = useState(false)
-  const { pathname } = useLocation()
-
-  useEffect(() => {
-    setOpen(false)
-    console.log(pathname)
-  }, [pathname])
+const Burguer: FunctionComponent<BurguerProps> = (props) => {
+  const { loggedIn, open, setOpen } = props
 
   return (
     <StyledDiv>
@@ -95,7 +90,7 @@ const Burguer = (): ReactElement => {
         <div />
         <div />
       </StyledBurger>
-      <RightNav open={open}/>
+      <RightNav loggedIn={loggedIn} open={open}/>
     </StyledDiv>
   )
 }

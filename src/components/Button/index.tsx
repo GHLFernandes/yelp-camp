@@ -27,9 +27,9 @@ const StyledButton = memo(styled.button`
 
 `)
 
-const Button = ({ children, className, type }: { children?: React.ReactNode, className: string, type: string }): ReactElement => {
+const Button = ({ children, className, type, disabled }: { children?: React.ReactNode, className: string, type: string, disabled?: boolean }): ReactElement => {
   return (
-    <StyledButton className={className} type={type}>{children}</StyledButton>
+    <StyledButton className={className} type={type} disabled={disabled}>{children}</StyledButton>
   )
 }
 

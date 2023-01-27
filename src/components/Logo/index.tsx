@@ -1,4 +1,4 @@
-import React, { ReactElement, memo } from 'react'
+import React, { memo } from 'react'
 import styled from 'styled-components'
 
 import LogoImg from './img/Logo.svg'
@@ -16,7 +16,7 @@ const StyledLogo = styled.div`
     }
 `
 
-const Logo = (): ReactElement => {
+const Logo: React.FunctionComponent = props => {
   return (
     <StyledLogo>
       <Link to='/'>

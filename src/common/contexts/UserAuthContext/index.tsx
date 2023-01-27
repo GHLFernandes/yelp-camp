@@ -1,58 +1,77 @@
-import { UserCredential, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged, User, GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
-import React, { ReactElement, createContext, useContext, useEffect, useState } from 'react'
-import { auth } from '../../../firebase.js'
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, GoogleAuthProvider, signInWithPopup, updatePassword, User } from 'firebase/auth'
+import React, { FunctionComponent, createContext, useContext, useState } from 'react'
+import { auth } from '../../../config/firebase'
 
-interface Props {
+interface UserAuthContextProviderProps {
   children: JSX.Element
 }
 
-const userAuthContext = createContext({})
+const UserAuthContext = createContext({})
 
-export const UserAuthContextProvider = ({ children }: Props): ReactElement => {
-  const [user, setUser] = useState<User | null>()
-  const [currentUser, setCurrentUser] = useState({});
+export const UserAuthContextProvider: FunctionComponent<UserAuthContextProviderProps> = (UserAuthContextProviderProps) => {
+  const [erro, setErro] = useState('')
 
-  const signUp = async (email: string, password: string): Promise<UserCredential> => {
+  const signUp = async (email: string, password: string): Promise<any> => {
     return await createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+      // Signed up
+      })
+      .catch((error: { message: string, code: string }) => {
+        setErro(error.code)
+      })
   }
 
-  const signIn = async (email: string, password: string): Promise<UserCredential> => {
-    console.log(email, password)
+  const signIn = async (email: string, password: string): Promise<any> => {
     return await signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in
+        console.log('Sign in')
+      })
+      .catch((error: { message: string, code: string }) => {
+        setErro(error.message)
+      })
   }
 
   const signOutUser = async (): Promise<void> => {
     return await signOut(auth)
+      .then(() => {
+        console.log('Sign out')
+        localStorage.setItem('user', '')
+      })
+      .catch((error: { message: string, code: string }) => {
+        setErro(error.message)
+      })
   }
 
-  const googleSignIn = async (): Promise<UserCredential> => {
+  const googleSignIn = async (): Promise<any> => {
     const googleAuthProvider = new GoogleAuthProvider()
 
     return await signInWithPopup(auth, googleAuthProvider)
+      .then((userCredential) => {
+        // Signed in
+      })
+      .catch((error: { message: string, code: string }) => {
+        setErro(error.message)
+      })
   }
 
-
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser)
-    })
-
-    if (user) {
-        setCurrentUser({ email: user.email, uid: user.uid })
-      }
-    return () => {
-      unsubscribe()
-    }
-  }, [currentUser])
+  const changePass = async (user: User, password: string): Promise<any> => {
+    return await updatePassword(user, password)
+      .then(() => {
+        console.log('Pass Changed!')
+      })
+      .catch((error: { message: string, code: string }) => {
+        setErro(error.message)
+      })
+  }
 
   return (
-    <userAuthContext.Provider value={{ user, currentUser, signUp, signIn, signOutUser, googleSignIn }}>
-      {children}
-    </userAuthContext.Provider>
-
+    <UserAuthContext.Provider value={{ signUp, signIn, signOutUser, googleSignIn, changePass, erro, setErro }} >
+      { UserAuthContextProviderProps.children }
+    </UserAuthContext.Provider>
   )
 }
 
 export const useUserAuth = (): any => {
-  return useContext(userAuthContext)
+  return useContext(UserAuthContext)
 }

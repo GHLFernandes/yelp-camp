@@ -1,4 +1,4 @@
-import React, { ReactElement, memo } from 'react'
+import React, { memo } from 'react'
 import Button from '../../../../components/Button'
 import InputSearch from '../InputSearch'
 import styled from 'styled-components'
@@ -25,7 +25,7 @@ const StyledSearchForm = memo(styled.form`
   }
 `)
 
-const SearchForm = (): ReactElement => {
+const SearchForm: React.FunctionComponent = props => {
   return (
     <StyledSearchForm>
       <InputSearch className='inpuSearch' placeholder='Search for camps'/>

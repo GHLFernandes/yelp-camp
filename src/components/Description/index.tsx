@@ -1,5 +1,9 @@
-import React, { ReactElement, memo } from 'react'
+import React, { FunctionComponent, memo } from 'react'
 import styled from 'styled-components'
+
+interface DescriptionProps {
+  children?: React.ReactNode
+}
 
 const StyledDesc = memo(styled.p`
     display: inline-block;
@@ -9,7 +13,8 @@ const StyledDesc = memo(styled.p`
     margin: 5px 0;
 `)
 
-const Description = ({ children }: { children?: React.ReactNode }): ReactElement => {
+const Description: FunctionComponent<DescriptionProps> = (props) => {
+  const { children } = props
   return (
     <StyledDesc>{children}</StyledDesc>
   )
