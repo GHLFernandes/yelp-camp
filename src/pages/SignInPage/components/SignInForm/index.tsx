@@ -15,8 +15,8 @@ const StyledSignInForm = memo(styled.form`
   }
 `)
 
-const SignInForm: FunctionComponent = () => {
-  const { signIn, googleSignIn, erro, setErro } = useUserAuth()
+const SignInForm = (): ReactElement => {
+  const { signIn, googleSignIn } = useUserAuth()
   const [email, setEmail] = useState('')
   const [pass, setPass] = useState('')
   const [authenticating, setAuthenticating] = useState(false)
@@ -26,17 +26,11 @@ const SignInForm: FunctionComponent = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault()
 
-    if (erro !== '') setErro('')
-
-    if (erro.code === 'auth/network-request-failed') {
-      setErro('Password wrong! Please try again with valid credential.')
-      return
-    } else if (erro.code === 'auth/email-already-in-use') {
-      setErro('Email already in use.')
-      return
-    } else if (erro.code === 'auth/invalid-email' || erro.code === 'auth/user-not-found)') {
-      setErro('Invalid e-mail. Please try again with valid credentials.')
-      return
+    try {
+      await signIn(email, pass)
+      navigate('/camps')
+    } catch (error: unknown) {
+      console.log(error)
     }
 
     setAuthenticating(true)
@@ -70,9 +64,17 @@ const SignInForm: FunctionComponent = () => {
       })
   }
 
+  const handleGoogleSignIn = async (): Promise<void> => {
+    try {
+      await googleSignIn()
+      navigate('/camps')
+    } catch (error: unknown) {
+      console.log(error)
+    }
+  }
   return (
     <>
-      <StyledSignInForm onSubmit={ async (e: any) => await handleSubmit(e) }>
+      <StyledSignInForm onSubmit={async (e: React.FormEvent<HTMLInputElement>) => await handleSubmit(e)}>
         <TextInput
           placeholder='johndoe_91'
           id='email'
@@ -90,7 +92,7 @@ const SignInForm: FunctionComponent = () => {
           value={pass}
           onChange={(e) => setPass(e.target.value)}
         />
-        <Button type='submit' className='full-width loginBtn' disabled={authenticating}>Login</Button>
+        <Button type='submit' className='full-width loginBtn'>Login</Button>
         {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
         <GoogleButton className='g-btn' type='dark' onClick={ async () => await handleGoogleSignIn() }/>
       </StyledSignInForm>

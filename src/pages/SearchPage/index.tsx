@@ -72,7 +72,7 @@ const Campgrounds = memo(styled.div`
 
 `)
 
-const SearchPage: React.FunctionComponent = props => {
+const SearchPage = (): ReactElement => {
   return (
     <StyledSearchPage>
       <Main>

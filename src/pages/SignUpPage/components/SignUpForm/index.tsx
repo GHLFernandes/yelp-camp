@@ -22,9 +22,11 @@ const SignUpForm: FunctionComponent = (props) => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault()
 
-    if (pass !== confirm) {
-      setErro('Please make sure your password match.')
-      return
+    try {
+      await signUp(email, pass)
+      navigate('/camps')
+    } catch (error: unknown) {
+      console.log(error)
     }
 
     if (erro.code === 'auth/weak-password') {

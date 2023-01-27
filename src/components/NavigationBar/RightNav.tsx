@@ -166,6 +166,8 @@ const RightNav: FunctionComponent<NavProps> = (props) => {
   const { loggedIn, open } = props
   const { signOutUser } = useUserAuth()
   const [isOpen, setIsOpen] = useState(open)
+  const { signOutUser, user } = useUserAuth()
+
   const navigate = useNavigate()
   const user = auth.currentUser
 
@@ -199,7 +201,7 @@ const RightNav: FunctionComponent<NavProps> = (props) => {
             </StyledLink>
           )
         )}
-        {((!loggedIn)
+        {((!user)
           ? <StyledAnonymous>
             <Link to='/sign-in'>
               <span>Login</span>

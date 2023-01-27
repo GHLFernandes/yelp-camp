@@ -39,6 +39,7 @@ const AppRouter: FunctionComponent = () => {
 
   return (
     <main className='container'>
+<<<<<<< HEAD
       <UserAuthContextProvider>
         <Router>
           <NavigationBar loggedIn={loggedIn}/>
@@ -67,6 +68,34 @@ const AppRouter: FunctionComponent = () => {
           <Footer />
         </Router>
       </UserAuthContextProvider>
+=======
+      <Router>
+        <NavigationBar />
+        <Suspense fallback={<p> Carregando...</p>}>
+          <Routes>
+            <Route index element={<LandingPage />} />
+            <Route path='camps' element={<SearchPage />} />
+            <Route
+              path='add-campground'
+              element={
+                <ProtectedRoute>
+                  <AddCampground />
+                </ProtectedRoute>}
+            />
+            <Route
+              path='add-comment'
+              element={
+                <ProtectedRoute>
+                  <AddNewComment />
+                </ProtectedRoute>}
+            />
+            <Route path='sign-up' element={<SignUpPage />} />
+            <Route path='sign-in' element={<SignInPage />} />
+          </Routes>
+        </Suspense>
+        <Footer />
+      </Router>
+>>>>>>> 596b48b1c60aabc05d5a78e8fbc6a78a0ed50940
     </main>
   )
 }

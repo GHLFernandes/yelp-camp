@@ -1,6 +1,7 @@
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, GoogleAuthProvider, signInWithPopup, updatePassword, User } from 'firebase/auth'
-import React, { FunctionComponent, createContext, useContext, useState } from 'react'
-import { auth } from '../../../config/firebase'
+
+import { UserCredential, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged, User, GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
+import React, { ReactElement, createContext, useContext, useEffect, useState } from 'react'
+import { auth } from '../../../firebase.js'
 
 interface UserAuthContextProviderProps {
   children: JSX.Element
@@ -8,8 +9,10 @@ interface UserAuthContextProviderProps {
 
 const UserAuthContext = createContext({})
 
-export const UserAuthContextProvider: FunctionComponent<UserAuthContextProviderProps> = (UserAuthContextProviderProps) => {
-  const [erro, setErro] = useState('')
+export const UserAuthContextProvider = ({ children }: Props): ReactElement => {
+  const [user, setUser] = useState<User | null>()
+  const [currentUser, setCurrentUser] = useState({});
+
 
   const signUp = async (email: string, password: string): Promise<any> => {
     return await createUserWithEmailAndPassword(auth, email, password)
@@ -43,16 +46,16 @@ export const UserAuthContextProvider: FunctionComponent<UserAuthContextProviderP
       })
   }
 
-  const googleSignIn = async (): Promise<any> => {
+  const googleSignIn = async (): Promise<UserCredential> => {
     const googleAuthProvider = new GoogleAuthProvider()
 
     return await signInWithPopup(auth, googleAuthProvider)
-      .then((userCredential) => {
-        // Signed in
-      })
-      .catch((error: { message: string, code: string }) => {
-        setErro(error.message)
-      })
+    .then((userCredential) => {
+      // Signed in
+    })
+    .catch((error: { message: string, code: string }) => {
+      setErro(error.message)
+    })
   }
 
   const changePass = async (user: User, password: string): Promise<any> => {
@@ -64,6 +67,19 @@ export const UserAuthContextProvider: FunctionComponent<UserAuthContextProviderP
         setErro(error.message)
       })
   }
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser)
+    })
+
+    if (user) {
+        setCurrentUser({ email: user.email, uid: user.uid })
+      }
+    return () => {
+      unsubscribe()
+    }
+  }, [currentUser])
 
   return (
     <UserAuthContext.Provider value={{ signUp, signIn, signOutUser, googleSignIn, changePass, erro, setErro }} >
