@@ -1,13 +1,11 @@
-import React, { ReactElement, memo, useState } from 'react'
+import React, { FC, memo, useState } from 'react'
 import { v4 as uuid } from 'uuid'
 import styled from 'styled-components'
 import Title from '../../components/Title'
 import TextInput from '../../components/TextInput'
 import Button from '../../components/Button'
 import TextArea from '../../components/TextArea'
-import { addDoc, collection } from 'firebase/firestore'
-import { db } from '../../firebase'
-import { useNavigate } from 'react-router-dom'
+// import { useNavigate } from 'react-router-dom'
 
 const StyledAddCampground = memo(styled.div`
     display: grid;
@@ -32,28 +30,28 @@ const Form = memo(styled.form`
 
 `)
 
-const AddCampground = (): ReactElement => {
-  const unique_id = uuid()
-  const [id, setId] = useState(unique_id)
+const AddCampground: FC = () => {
+  const uniqueId = uuid()
+  const [id] = useState(uniqueId)
   const [campgroundName, setCampgroundName] = useState('')
   const [price, setPrice] = useState('')
   const [img, setImg] = useState('')
   const [desc, setDesc] = useState('')
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
 
   const handleSubmit = async (e: { preventDefault: () => void }): Promise<any> => {
     e.preventDefault()
-    const campsColRef = collection(db, 'camps')
+    // const campsColRef = collection(db, 'camps')
 
-    await addDoc(campsColRef, {id, campgroundName, price, img, desc})
-      .then(res => {
-        console.log('Dado inserido')
-        navigate('/camps')
+    // await addDoc(campsColRef, {id, campgroundName, price, img, desc})
+    //   .then(res => {
+    //     console.log('Dado inserido')
+    //     navigate('/camps')
 
-      })
-      .catch(err => {
-        console.log(err)
-      })
+    //   })
+    //   .catch(err => {
+    //     console.log(err)
+    //   })
   }
 
   return (

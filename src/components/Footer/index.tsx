@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import React, { FC, memo } from 'react'
 import styled from 'styled-components'
 import Logo from '../Logo'
 import { useLocation } from 'react-router-dom'
@@ -23,7 +23,7 @@ const StyledFooter = memo(styled.section`
     }
 `)
 
-const Footer: React.FunctionComponent = props => {
+const Footer: FC = () => {
   const { pathname } = useLocation()
 
   return (

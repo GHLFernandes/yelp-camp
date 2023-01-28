@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import React, { FC, memo } from 'react'
 import styled from 'styled-components'
 
 import { ReactComponent as UserTestimonialPhoto } from './img/User Testimonial.svg'
@@ -48,7 +48,7 @@ const UserInfo = memo(styled.div`
     }
 `)
 
-const Testimony: React.FunctionComponent = props => {
+const Testimony: FC = () => {
   return (
     <StyledTestimony>
       <QuoteTestimony>&quot;YelpCamp has honestly saved me hours of research time, and the camps on here are definitely well picked and added.&quot;</QuoteTestimony>

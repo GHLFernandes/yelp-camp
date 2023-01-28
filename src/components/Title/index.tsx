@@ -1,4 +1,4 @@
-import React, { FunctionComponent, memo } from 'react'
+import React, { FC, memo } from 'react'
 import styled from 'styled-components'
 
 const StyledTitle = memo(styled.h1`
@@ -11,10 +11,10 @@ const StyledTitle = memo(styled.h1`
 `)
 
 interface TitleProps {
-  children: React.ReactNode
+  children?: React.ReactNode
 }
 
-const Title: FunctionComponent<TitleProps> = (props) => {
+const Title: FC<TitleProps> = (props) => {
   const { children } = props
   return (
     <StyledTitle>{children}</StyledTitle>

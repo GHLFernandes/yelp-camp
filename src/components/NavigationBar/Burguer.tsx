@@ -1,4 +1,5 @@
-import React, { FunctionComponent, memo, useEffect, useState } from 'react'
+import React, { FC, memo, useEffect, useState } from 'react'
+import { useLocation } from 'react-router-dom'
 import styled from 'styled-components'
 import RightNav from './RightNav'
 
@@ -80,8 +81,13 @@ const StyledBurger = memo(styled.div<BurguerProps>`
   }
 `)
 
-const Burguer: FunctionComponent<BurguerProps> = (props) => {
-  const { loggedIn, open, setOpen } = props
+const Burguer: FC = () => {
+  const [open, setOpen] = useState(false)
+  const { pathname } = useLocation()
+
+  useEffect(() => {
+    setOpen(false)
+  }, [pathname])
 
   return (
     <StyledDiv>
@@ -90,7 +96,7 @@ const Burguer: FunctionComponent<BurguerProps> = (props) => {
         <div />
         <div />
       </StyledBurger>
-      <RightNav loggedIn={loggedIn} open={open}/>
+      <RightNav open={open}/>
     </StyledDiv>
   )
 }

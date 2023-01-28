@@ -1,13 +1,8 @@
-import React, { memo, useState } from 'react'
+import React, { FC, memo, useState } from 'react'
 import styled from 'styled-components'
 import Title from '../../components/Title'
 import Button from '../../components/Button'
 import TextArea from '../../components/TextArea'
-
-const inicialFormValues = {
-  id: 0,
-  comment: ''
-}
 
 const StyledAddNewComment = memo(styled.div`
     display: grid;
@@ -32,7 +27,7 @@ const Form = memo(styled.form`
 
 `)
 
-const AddNewComment: React.FunctionComponent = props => {
+const AddNewComment: FC = () => {
   const [comment, setComment] = useState('')
 
   return (

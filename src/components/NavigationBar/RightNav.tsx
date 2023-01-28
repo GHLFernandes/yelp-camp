@@ -1,12 +1,13 @@
-import React, { FunctionComponent, memo, useEffect, useState } from 'react'
+/* eslint-disable @typescript-eslint/strict-boolean-expressions */
+/* eslint-disable @typescript-eslint/no-misused-promises */
+import React, { FC, memo, useEffect, useState } from 'react'
 import styled from 'styled-components'
 import routes from '../../_routes'
 import { Link, useNavigate } from 'react-router-dom'
 import { useUserAuth } from '../../common/contexts/UserAuthContext'
 import { auth } from '../../config/firebase'
 
-interface NavProps {
-  loggedIn: boolean
+export interface RightNavProps {
   open: boolean
 }
 
@@ -17,7 +18,7 @@ const StyledRightNav = memo(styled.div`
   margin-left: 20px;
 `)
 
-const List = memo(styled.ul<NavProps>`
+const List = memo(styled.ul<RightNavProps>`
   list-style: none;
   display: flex;
 
@@ -161,11 +162,10 @@ const StyledAnonymous = memo(styled.div`
 }
 `)
 
-const RightNav: FunctionComponent<NavProps> = (props) => {
-  const { loggedIn, open } = props
+const RightNav: FC<RightNavProps> = (props) => {
+  const { open } = props
   const [isOpen, setIsOpen] = useState(open)
   const { signOutUser } = useUserAuth()
-
   const navigate = useNavigate()
   const user = auth.currentUser
 
@@ -213,7 +213,7 @@ const RightNav: FunctionComponent<NavProps> = (props) => {
               {user?.email}
             </div>
             <div>
-              <span id='log-out-navbar' onClick={handleLogout}>
+              <span id='log-out-navbar' onClick={ handleLogout }>
                 Logout
               </span>
             </div>

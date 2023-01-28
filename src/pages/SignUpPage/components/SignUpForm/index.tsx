@@ -1,4 +1,4 @@
-import React, { FunctionComponent, memo, useState } from 'react'
+import React, { FC, memo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Button from '../../../../components/Button'
 import TextInput from '../../../../components/TextInput'
@@ -10,7 +10,7 @@ const StyledSignUpForm = memo(styled.form`
   display: block;
 `)
 
-const SignUpForm: FunctionComponent = (props) => {
+const SignUpForm: FC = () => {
   const { signUp, erro, setErro } = useUserAuth()
   const [email, setEmail] = useState('')
   const [pass, setPass] = useState('')
@@ -53,7 +53,7 @@ const SignUpForm: FunctionComponent = (props) => {
   }
 
   return (
-    <StyledSignUpForm onSubmit={ async (e: any) => await handleSubmit(e)}>
+    <StyledSignUpForm onSubmit={async (e: React.FormEvent<HTMLFormElement>) => await handleSubmit(e)}>
       <TextInput
         placeholder='johndoe_91@example.com'
         id='email'

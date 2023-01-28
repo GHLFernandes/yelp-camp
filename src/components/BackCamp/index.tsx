@@ -1,9 +1,7 @@
-
-import React, { ReactElement, memo } from 'react'
+import React, { FC, memo } from 'react'
 import { Link } from 'react-router-dom'
 
-const BackCamp = (): ReactElement => {
-
+const BackCamp: FC = () => {
   return (
     <Link to='/camps'>
       <p><span>&#8592;</span>Back to Campgrounds</p>

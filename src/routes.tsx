@@ -1,4 +1,4 @@
-import React, { FunctionComponent, lazy, Suspense, useEffect, useState } from 'react'
+import React, { FC, lazy, Suspense, useEffect, useState } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import NavigationBar from './components/NavigationBar'
 import Footer from './components/Footer'
@@ -13,24 +13,19 @@ const AddNewComment = lazy(async () => await import('./pages/AddNewComment'))
 const SignUpPage = lazy(async () => await import('./pages/SignUpPage'))
 const SignInPage = lazy(async () => await import('./pages/SignInPage'))
 
-const AppRouter: FunctionComponent = () => {
+const AppRouter: FC = () => {
   const [loading, setLoading] = useState(true)
   const [loggedIn, setLoggedIn] = useState(false)
 
   useEffect(() => {
     auth.onAuthStateChanged(user => {
-      if (user === null) {
+      if (user == null) {
         console.log('No user detected')
         setLoggedIn(false)
       } else {
         console.log('User detected.')
         setLoggedIn(true)
-        localStorage.setItem('user', JSON.stringify({
-          email: user.email,
-          emailVerified: user.emailVerified,
-          // uid: user.uid,
-          providerData: user.providerData
-        }))
+        localStorage.setItem('user', JSON.stringify(user))
       }
 
       setLoading(false)
@@ -39,9 +34,9 @@ const AppRouter: FunctionComponent = () => {
 
   return (
     <main className='container'>
-      <UserAuthContextProvider>
+      <UserAuthContextProvider loggedIn={loggedIn}>
         <Router>
-          <NavigationBar loggedIn={loggedIn}/>
+          <NavigationBar />
           <Suspense fallback={loading && <p> Carregando...</p>}>
             <Routes>
               <Route index element={<LandingPage />} />

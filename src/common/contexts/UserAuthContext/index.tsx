@@ -1,16 +1,17 @@
+import React, { FC, createContext, useContext, useState } from 'react'
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, GoogleAuthProvider, signInWithPopup, updatePassword, User } from 'firebase/auth'
-import  React, { FC, createContext, useContext, useEffect, useState } from 'react'
 import { auth } from '../../../firebase.js'
 
 interface UserAuthContextProviderProps {
   children: JSX.Element
+  loggedIn: boolean
 }
 
 const UserAuthContext = createContext({})
 
 export const UserAuthContextProvider: FC<UserAuthContextProviderProps> = (props) => {
   const [erro, setErro] = useState('')
-  const { children } = props
+  const { children, loggedIn } = props
 
   const signUp = async (email: string, password: string): Promise<any> => {
     return await createUserWithEmailAndPassword(auth, email, password)
@@ -48,12 +49,12 @@ export const UserAuthContextProvider: FC<UserAuthContextProviderProps> = (props)
     const googleAuthProvider = new GoogleAuthProvider()
 
     return await signInWithPopup(auth, googleAuthProvider)
-    .then((userCredential) => {
+      .then((userCredential) => {
       // Signed in
-    })
-    .catch((error: { message: string, code: string }) => {
-      setErro(error.message)
-    })
+      })
+      .catch((error: { message: string, code: string }) => {
+        setErro(error.message)
+      })
   }
 
   const changePass = async (user: User, password: string): Promise<any> => {
@@ -67,7 +68,7 @@ export const UserAuthContextProvider: FC<UserAuthContextProviderProps> = (props)
   }
 
   return (
-    <UserAuthContext.Provider value={{ signUp, signIn, signOutUser, googleSignIn, changePass, erro, setErro }} >
+    <UserAuthContext.Provider value={{ signUp, signIn, signOutUser, googleSignIn, changePass, erro, setErro, loggedIn }} >
       { children }
     </UserAuthContext.Provider>
   )

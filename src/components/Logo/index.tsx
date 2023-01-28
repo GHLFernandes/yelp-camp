@@ -1,11 +1,10 @@
-import React, { memo } from 'react'
+import React, { FC, memo } from 'react'
 import styled from 'styled-components'
 
 import LogoImg from './img/Logo.svg'
 import { Link } from 'react-router-dom'
 
 const StyledLogo = styled.div`
-
     img{
       width: 150px;
     }
@@ -16,7 +15,7 @@ const StyledLogo = styled.div`
     }
 `
 
-const Logo: React.FunctionComponent = props => {
+const Logo: FC = () => {
   return (
     <StyledLogo>
       <Link to='/'>

@@ -1,16 +1,18 @@
-import React, { FunctionComponent, memo, useEffect, useState } from 'react'
+/* eslint-disable @typescript-eslint/strict-boolean-expressions */
+import React, { FC, memo } from 'react'
 import { Navigate } from 'react-router-dom'
-import { useUserAuth } from '../../common/contexts/UserAuthContext'
 
 interface ProtectedRouteProps {
   children: JSX.Element
 }
 
-const ProtectedRoute: FunctionComponent<ProtectedRouteProps> = (props) => {
-  const { currentUser } = useUserAuth()
+const ProtectedRoute: FC<ProtectedRouteProps> = (props) => {
   const { children } = props
+  const user = localStorage.getItem('user')
 
-  if (!currentUser) {
+  if (user == null || user === '') {
+    console.log('No user detected, redirecting')
+
     return <Navigate to="/sign-in" />
   }
 

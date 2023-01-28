@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import React, { FC, memo } from 'react'
 import styled from 'styled-components'
 import Logo from '../../components/Logo'
 import Title from '../../components/Title'
@@ -100,7 +100,7 @@ const Ul = memo(styled.ul`
   padding: 0;
 `)
 
-const LandingPage: React.FunctionComponent = props => {
+const LandingPage: FC = () => {
   return (
     <StyledLandingPage>
       <ContainerLP >

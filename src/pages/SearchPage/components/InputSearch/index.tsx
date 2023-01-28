@@ -1,5 +1,5 @@
 import { InputAdornment, TextField } from '@mui/material'
-import React, { FunctionComponent, memo, useState } from 'react'
+import React, { FC, memo, useState } from 'react'
 import { styled } from '@mui/material/styles'
 import { Search } from '@mui/icons-material'
 
@@ -15,12 +15,12 @@ const CssTextField = styled(TextField)({
 
 })
 
-interface InputTextProps {
+interface InputSearchProps {
   placeholder: string
   className: string
 }
 
-const InputText: FunctionComponent<InputTextProps> = (props) => {
+const InputText: FC<InputSearchProps> = (props) => {
   const { placeholder, className } = props
   const [value, setValue] = useState('')
 

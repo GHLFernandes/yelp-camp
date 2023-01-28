@@ -1,4 +1,4 @@
-import React, { memo, FunctionComponent } from 'react'
+import React, { FC, memo } from 'react'
 import styled from 'styled-components'
 import Title from '../../components/Title'
 import Description from '../../components/Description'
@@ -72,7 +72,7 @@ const Campgrounds = memo(styled.div`
 
 `)
 
-const SearchPage: FunctionComponent = () => {
+const SearchPage: FC = () => {
   return (
     <StyledSearchPage>
       <Main>

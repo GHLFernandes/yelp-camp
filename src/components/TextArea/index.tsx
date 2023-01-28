@@ -1,15 +1,6 @@
 import { InputLabel, TextField } from '@mui/material'
-import React, { FunctionComponent, memo } from 'react'
+import React, { FC, memo } from 'react'
 import { styled } from '@mui/material/styles'
-
-interface TextInputProps {
-  placeholder: string
-  size: number
-  id: string
-  label: string
-  value: string
-  onChange: React.ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement>
-}
 
 const CssTextField = styled(TextField)({
   backgroundColor: '#f7f7f7',
@@ -24,8 +15,18 @@ const CssTextField = styled(TextField)({
 
 })
 
-const TextInput: FunctionComponent<TextInputProps> = (props) => {
-  const { placeholder, id, label, size, value, onChange } = props
+interface TextInputProps {
+  placeholder: string
+  size: number
+  id: string
+  label: string
+  value: string
+  onChange: React.ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement>
+}
+
+const TextInput: FC<TextInputProps> = (props) => {
+  const { placeholder, size, id, label, value, onChange } = props
+
   return (
     <>
       <InputLabel style={{ fontSize: 25 }} shrink htmlFor={id}>

@@ -1,4 +1,4 @@
-import React, { ReactElement, memo } from 'react'
+import React, { FC, memo } from 'react'
 import styled from 'styled-components'
 
 const StyledButton = memo(styled.button`
@@ -26,8 +26,16 @@ const StyledButton = memo(styled.button`
     }
 
 `)
+interface ButtonProps {
+  children?: React.ReactNode
+  className: string
+  type: string
+  disabled?: boolean
+}
 
-const Button = ({ children, className, type, disabled }: { children?: React.ReactNode, className: string, type: string, disabled?: boolean }): ReactElement => {
+const Button: FC<ButtonProps> = (props) => {
+  const { children, className, type, disabled } = props
+
   return (
     <StyledButton className={className} type={type} disabled={disabled}>{children}</StyledButton>
   )

@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import React, { FC, memo } from 'react'
 import styled from 'styled-components'
 import Title from '../../components/Title'
 import SignInForm from './components/SignInForm'
@@ -133,7 +133,7 @@ const TestimonialsContainer = memo(styled.div`
       }
 `)
 
-const SignInPage: React.FunctionComponent = props => {
+const SignInPage: FC = () => {
   return (
     <Main>
       <SignInContainer>
