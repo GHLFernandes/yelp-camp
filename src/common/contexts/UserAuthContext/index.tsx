@@ -1,5 +1,7 @@
-import React, { FC, createContext, useContext, useState } from 'react'
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, GoogleAuthProvider, signInWithPopup, updatePassword, User } from 'firebase/auth'
+import type { FC } from 'react'
+import React, { createContext, useContext, useState } from 'react'
+import type { User } from 'firebase/auth'
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, GoogleAuthProvider, signInWithPopup, updatePassword } from 'firebase/auth'
 import { auth } from '../../../firebase.js'
 
 interface UserAuthContextProviderProps {
@@ -14,7 +16,7 @@ export const UserAuthContextProvider: FC<UserAuthContextProviderProps> = (props)
   const { children, loggedIn } = props
 
   const signUp = async (email: string, password: string): Promise<any> => {
-    return await createUserWithEmailAndPassword(auth, email, password)
+    await createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
       // Signed up
       })
@@ -24,7 +26,7 @@ export const UserAuthContextProvider: FC<UserAuthContextProviderProps> = (props)
   }
 
   const signIn = async (email: string, password: string): Promise<any> => {
-    return await signInWithEmailAndPassword(auth, email, password)
+    await signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Signed in
         console.log('Sign in')
@@ -35,7 +37,7 @@ export const UserAuthContextProvider: FC<UserAuthContextProviderProps> = (props)
   }
 
   const signOutUser = async (): Promise<void> => {
-    return await signOut(auth)
+    await signOut(auth)
       .then(() => {
         console.log('Sign out')
         localStorage.setItem('user', '')
@@ -48,7 +50,7 @@ export const UserAuthContextProvider: FC<UserAuthContextProviderProps> = (props)
   const googleSignIn = async (): Promise<any> => {
     const googleAuthProvider = new GoogleAuthProvider()
 
-    return await signInWithPopup(auth, googleAuthProvider)
+    await signInWithPopup(auth, googleAuthProvider)
       .then((userCredential) => {
       // Signed in
       })
@@ -58,7 +60,7 @@ export const UserAuthContextProvider: FC<UserAuthContextProviderProps> = (props)
   }
 
   const changePass = async (user: User, password: string): Promise<any> => {
-    return await updatePassword(user, password)
+    await updatePassword(user, password)
       .then(() => {
         console.log('Pass Changed!')
       })

@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/strict-boolean-expressions */
 /* eslint-disable @typescript-eslint/no-misused-promises */
-import React, { FC, memo, useEffect, useState } from 'react'
+import type { FC } from 'react'
+import React, { memo, useEffect, useState } from 'react'
 import styled from 'styled-components'
 import routes from '../../_routes'
 import { Link, useNavigate } from 'react-router-dom'

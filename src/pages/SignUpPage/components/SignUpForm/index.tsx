@@ -1,4 +1,5 @@
-import React, { FC, memo, useState } from 'react'
+import type { FC } from 'react'
+import React, { memo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Button from '../../../../components/Button'
 import TextInput from '../../../../components/TextInput'
@@ -53,14 +54,14 @@ const SignUpForm: FC = () => {
   }
 
   return (
-    <StyledSignUpForm onSubmit={async (e: React.FormEvent<HTMLFormElement>) => await handleSubmit(e)}>
+    <StyledSignUpForm onSubmit={async (e: React.FormEvent<HTMLFormElement>) => { await handleSubmit(e) }}>
       <TextInput
         placeholder='johndoe_91@example.com'
         id='email'
         label='E-mail'
         type='text'
         value={email}
-        onChange={(e) => setEmail(e.target.value)}
+        onChange={(e) => { setEmail(e.target.value) }}
       />
       <TextInput
         placeholder='Choose Password'
@@ -68,7 +69,7 @@ const SignUpForm: FC = () => {
         label='Password'
         type='password'
         value={pass}
-        onChange={(e) => setPass(e.target.value)}
+        onChange={(e) => { setPass(e.target.value) }}
       />
       <TextInput
         placeholder='Confirm Password'
@@ -76,7 +77,7 @@ const SignUpForm: FC = () => {
         label='Confirm Password'
         type='password'
         value={confirm}
-        onChange={(e) => setConfirm(e.target.value)}
+        onChange={(e) => { setConfirm(e.target.value) }}
       />
       <Button type='submit' className='full-width createAccountBtn' disabled={registering}>Create an account</Button>
     </StyledSignUpForm>

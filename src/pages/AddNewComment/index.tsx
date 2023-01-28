@@ -1,4 +1,5 @@
-import React, { FC, memo, useState } from 'react'
+import type { FC } from 'react'
+import React, { memo, useState } from 'react'
 import styled from 'styled-components'
 import Title from '../../components/Title'
 import Button from '../../components/Button'
@@ -41,7 +42,7 @@ const AddNewComment: FC = () => {
             id='comment'
             placeholder={'This was probably the best camp i\'ve visited this past year, definitely recommend visiting any time soon.'}
             value={comment}
-            onChange={(e) => setComment(e.target.value)}
+            onChange={(e) => { setComment(e.target.value) }}
           />
           <Button type='submit' className='full-width addCommentBtn'>Post Comment</Button>
         </Form>

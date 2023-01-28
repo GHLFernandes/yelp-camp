@@ -1,5 +1,6 @@
 import { InputLabel, TextField } from '@mui/material'
-import React, { FC, memo } from 'react'
+import type { FC } from 'react'
+import React, { memo } from 'react'
 import { styled } from '@mui/material/styles'
 
 const CssTextField = styled(TextField)({

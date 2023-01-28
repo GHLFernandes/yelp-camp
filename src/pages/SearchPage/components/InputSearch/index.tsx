@@ -1,5 +1,6 @@
 import { InputAdornment, TextField } from '@mui/material'
-import React, { FC, memo, useState } from 'react'
+import type { FC } from 'react'
+import React, { memo, useState } from 'react'
 import { styled } from '@mui/material/styles'
 import { Search } from '@mui/icons-material'
 

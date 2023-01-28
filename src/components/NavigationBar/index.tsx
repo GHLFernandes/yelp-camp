@@ -1,4 +1,5 @@
-import React, { FC, memo, useEffect, useState } from 'react'
+import type { FC } from 'react'
+import React, { memo, useEffect, useState } from 'react'
 import styled from 'styled-components'
 import Logo from '../Logo'
 import Burguer from './Burguer'
@@ -52,11 +53,11 @@ const NavBar: FC = () => {
   const { pathname } = useLocation()
 
   useEffect(() => {
-    const onScroll = (): void => setOffset(window.pageYOffset)
+    const onScroll = (): void => { setOffset(window.pageYOffset) }
 
     window.removeEventListener('scroll', onScroll)
     window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
+    return () => { window.removeEventListener('scroll', onScroll) }
   }, [])
 
   return (

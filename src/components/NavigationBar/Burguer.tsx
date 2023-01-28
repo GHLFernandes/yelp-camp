@@ -1,4 +1,5 @@
-import React, { FC, memo, useEffect, useState } from 'react'
+import type { FC } from 'react'
+import React, { memo, useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import styled from 'styled-components'
 import RightNav from './RightNav'
@@ -91,7 +92,7 @@ const Burguer: FC = () => {
 
   return (
     <StyledDiv>
-      <StyledBurger open={open} onClick={() => setOpen(!open)}>
+      <StyledBurger open={open} onClick={() => { setOpen(!open) }}>
         <div />
         <div />
         <div />

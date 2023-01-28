@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/strict-boolean-expressions */
-import React, { FC, memo } from 'react'
+import type { FC } from 'react'
+import React, { memo } from 'react'
 import { Navigate } from 'react-router-dom'
 
 interface ProtectedRouteProps {

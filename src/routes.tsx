@@ -1,4 +1,5 @@
-import React, { FC, lazy, Suspense, useEffect, useState } from 'react'
+import type { FC } from 'react'
+import React, { lazy, Suspense, useEffect, useState } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import NavigationBar from './components/NavigationBar'
 import Footer from './components/Footer'

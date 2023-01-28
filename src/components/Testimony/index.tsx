@@ -1,4 +1,5 @@
-import React, { FC, memo } from 'react'
+import type { FC } from 'react'
+import React, { memo } from 'react'
 import styled from 'styled-components'
 
 import { ReactComponent as UserTestimonialPhoto } from './img/User Testimonial.svg'
