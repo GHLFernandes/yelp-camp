@@ -1,6 +1,5 @@
-
-import { UserCredential, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged, User, GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
-import React, { ReactElement, createContext, useContext, useEffect, useState } from 'react'
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, GoogleAuthProvider, signInWithPopup, updatePassword, User } from 'firebase/auth'
+import  React, { FC, createContext, useContext, useEffect, useState } from 'react'
 import { auth } from '../../../firebase.js'
 
 interface UserAuthContextProviderProps {
@@ -9,10 +8,9 @@ interface UserAuthContextProviderProps {
 
 const UserAuthContext = createContext({})
 
-export const UserAuthContextProvider = ({ children }: Props): ReactElement => {
-  const [user, setUser] = useState<User | null>()
-  const [currentUser, setCurrentUser] = useState({});
-
+export const UserAuthContextProvider: FC<UserAuthContextProviderProps> = (props) => {
+  const [erro, setErro] = useState('')
+  const { children } = props
 
   const signUp = async (email: string, password: string): Promise<any> => {
     return await createUserWithEmailAndPassword(auth, email, password)
@@ -46,7 +44,7 @@ export const UserAuthContextProvider = ({ children }: Props): ReactElement => {
       })
   }
 
-  const googleSignIn = async (): Promise<UserCredential> => {
+  const googleSignIn = async (): Promise<any> => {
     const googleAuthProvider = new GoogleAuthProvider()
 
     return await signInWithPopup(auth, googleAuthProvider)
@@ -68,22 +66,9 @@ export const UserAuthContextProvider = ({ children }: Props): ReactElement => {
       })
   }
 
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser)
-    })
-
-    if (user) {
-        setCurrentUser({ email: user.email, uid: user.uid })
-      }
-    return () => {
-      unsubscribe()
-    }
-  }, [currentUser])
-
   return (
     <UserAuthContext.Provider value={{ signUp, signIn, signOutUser, googleSignIn, changePass, erro, setErro }} >
-      { UserAuthContextProviderProps.children }
+      { children }
     </UserAuthContext.Provider>
   )
 }

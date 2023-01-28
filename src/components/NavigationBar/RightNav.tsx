@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-misused-promises */
 import React, { FunctionComponent, memo, useEffect, useState } from 'react'
 import styled from 'styled-components'
 import routes from '../../_routes'
@@ -164,9 +163,8 @@ const StyledAnonymous = memo(styled.div`
 
 const RightNav: FunctionComponent<NavProps> = (props) => {
   const { loggedIn, open } = props
-  const { signOutUser } = useUserAuth()
   const [isOpen, setIsOpen] = useState(open)
-  const { signOutUser, user } = useUserAuth()
+  const { signOutUser } = useUserAuth()
 
   const navigate = useNavigate()
   const user = auth.currentUser

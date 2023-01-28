@@ -1,4 +1,4 @@
-import React, { ReactElement, memo, useEffect, useState } from 'react'
+import React, { FunctionComponent, memo, useEffect, useState } from 'react'
 import { Navigate } from 'react-router-dom'
 import { useUserAuth } from '../../common/contexts/UserAuthContext'
 
@@ -6,8 +6,9 @@ interface ProtectedRouteProps {
   children: JSX.Element
 }
 
-const ProtectedRoute = ({ children }: Props): ReactElement => {
+const ProtectedRoute: FunctionComponent<ProtectedRouteProps> = (props) => {
   const { currentUser } = useUserAuth()
+  const { children } = props
 
   if (!currentUser) {
     return <Navigate to="/sign-in" />

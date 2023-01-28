@@ -15,8 +15,8 @@ const StyledSignInForm = memo(styled.form`
   }
 `)
 
-const SignInForm = (): ReactElement => {
-  const { signIn, googleSignIn } = useUserAuth()
+const SignInForm:FunctionComponent = () => {
+  const { signIn, googleSignIn, erro, setErro } = useUserAuth()
   const [email, setEmail] = useState('')
   const [pass, setPass] = useState('')
   const [authenticating, setAuthenticating] = useState(false)
@@ -47,22 +47,6 @@ const SignInForm = (): ReactElement => {
       })
   }
 
-  const handleGoogleSignIn = async (): Promise<void> => {
-    if (erro !== '') setErro('')
-
-    setAuthenticating(true)
-
-    await googleSignIn()
-      .then((result: any) => {
-        console.log(result)
-        navigate('/')
-      })
-      .catch((error: { message: any }) => {
-        console.log(error)
-        setAuthenticating(false)
-        setErro(error.message)
-      })
-  }
 
   const handleGoogleSignIn = async (): Promise<void> => {
     try {
@@ -74,7 +58,7 @@ const SignInForm = (): ReactElement => {
   }
   return (
     <>
-      <StyledSignInForm onSubmit={async (e: React.FormEvent<HTMLInputElement>) => await handleSubmit(e)}>
+      <StyledSignInForm onSubmit={async (e: any) => await handleSubmit(e)}>
         <TextInput
           placeholder='johndoe_91'
           id='email'
