@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/strict-boolean-expressions */
 /* eslint-disable @typescript-eslint/no-misused-promises */
 import type { FC } from 'react'
-import React, { memo, useEffect, useState } from 'react'
+import React, { memo, useEffect } from 'react'
 import styled from 'styled-components'
 import routes from '../../_routes'
 import { Link, useNavigate } from 'react-router-dom'
@@ -10,6 +10,7 @@ import { auth } from '../../config/firebase'
 
 export interface RightNavProps {
   open: boolean
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 const StyledRightNav = memo(styled.div`
@@ -39,9 +40,10 @@ const MenuList = memo(styled.ul<RightNavProps>`
   
     li {
       color: white;
-      padding-left: 20px;
+      padding: 10px 0 10px 20px;
+      margin-bottom: 5px;
       &:hover {
-          background-color: red;
+          background-color: #b3b3b3;
       }
     }
   
@@ -118,11 +120,25 @@ const StyledLink = memo(styled.li`
 const StyledUser = memo(styled.div`
     div{
       color: white;
-      padding-left: 20px;
+      margin-top: 15px;
+      width: 100%;
 
       #user-email-navbar, #log-out-navbar{
         font-size: 20px;
+        padding: 10px 0 10px 20px;
+
       }
+
+      #log-out-navbar{
+        display: inline-block;
+        width: 100%;
+        color: white;
+
+        &:hover {
+            background-color: #b3b3b3;
+            cursor: pointer;
+            text-decoration: underline;
+        }
     }
 
     @media (min-width: 1020px) {
@@ -148,66 +164,15 @@ const StyledUser = memo(styled.div`
     }
 `)
 
-// const StyledAnonymous = memo(styled.div`
-// @media (min-width: 1020px) {
-//   display: grid;
-//   grid-template-rows: 1fr;
-//   grid-template-columns: repeat(2, 1fr);
-//   align-items: center;
-//   font-weight: 700;
-//   text-align: center;
-//   align-self: center;
-
-//   a{
-//     color:black;
-//     text-decoration: none;
-//     font-size: 18px;
-//   }
-
-//   a:first-child{
-//     text-align: end;
-//     padding-right: 40px;
-//   }
-
-//   #sign-up-navbar{
-//     background-color:black;
-//     color: white;
-//     padding: 15px 20px;
-//     border-radius: 5px;
-//     border: 1px solid black;
-//     transition: all .3s linear;
-
-//   }
-
-//   #sign-up-navbar:hover{
-//     background-color:white;
-//     color: black;
-//     border: 1px solid black;
-//     cursor: pointer;
-//   }
-// }
-// `)
-
 const RightNav: FC<RightNavProps> = (props) => {
-  const { open } = props
-  const [isOpen, setIsOpen] = useState(open)
+  const { open, setOpen } = props
   const { signOutUser } = useUserAuth()
   const navigate = useNavigate()
   const user = auth.currentUser
-  // const [hasUser, setHasUser] = useState(false)
-
-  // if (user) {
-  //   setHasUser(true)
-  // }s
 
   useEffect(() => {
-    setIsOpen(open)
-  }, [open])
-
-  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-  const handleBurguer = () => {
-    setIsOpen(!open)
-  }
+    setOpen(open)
+  }, [open, setOpen])
 
   const handleLogout = async (): Promise<void> => {
     try {
@@ -220,30 +185,27 @@ const RightNav: FC<RightNavProps> = (props) => {
 
   return (
     <StyledRightNav>
-      <MenuList open={isOpen}>
-        {routes.map((route, index) =>
-          (
+      <MenuList open={open}>
+        {user && routes.map((route, index) =>
+          (((route.nav) && (route.showWhenLoggedIn)) &&
             <StyledLink key={index}>
-              { (user && route.nav && route.showWhenLoggedIn)
-                ? <Link to={route.path} onClick={handleBurguer}>
+              {
+                <Link to={route.path} onClick={ () => { setOpen(!open) } }>
                   {route.name}
                 </Link>
-                : null
               }
 
             </StyledLink>
           )
         )}
-        { routes.map((route, index) =>
-          (
+        {!user && routes.map((route, index) =>
+          (((route.nav) && (route.showWhenLoggedOut)) &&
             <StyledLink key={index}>
-              { (!user && route.nav && route.showWhenLoggedOut)
-                ? <Link to={route.path} onClick={handleBurguer}>
+              {
+                <Link to={route.path} onClick={ () => { setOpen(!open) } }>
                   {route.name}
                 </Link>
-                : null
               }
-
             </StyledLink>
           )
         )}
