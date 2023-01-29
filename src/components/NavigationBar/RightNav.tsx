@@ -99,13 +99,13 @@ const StyledLink = memo(styled.li`
     a {      
         color:white;
         cursor: pointer;
-        font-size: 24px;
+        font-size: 18px;
         font-weight: 600;
         text-decoration: none;
         transition: .2s ease;
         
         &:hover {
-        color:white;
+          color:white;
         }
     }
 
