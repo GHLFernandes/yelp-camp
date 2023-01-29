@@ -7,7 +7,7 @@ const StyledTitle = memo(styled.h1`
     margin: 10px 0;
 
     @media (min-width: 1020px) {
-      font-size: 40px;
+      font-size: 36px;
   }
 `)
 

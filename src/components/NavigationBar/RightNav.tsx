@@ -19,13 +19,13 @@ const StyledRightNav = memo(styled.div`
   margin-left: 20px;
 `)
 
-const List = memo(styled.ul<RightNavProps>`
-  list-style: none;
-  display: flex;
+const MenuList = memo(styled.ul<RightNavProps>`
 
   @media (max-width: 1020px) {
+    list-style: none;
+    display: flex;
     flex-flow: column nowrap;
-    background-color: red;
+    background-color: #3f3f3f;
     position: fixed;
     transform: ${({ open }) => open ? 'translateX(0)' : 'translateX(100%)'};
     top: 0;
@@ -33,31 +33,62 @@ const List = memo(styled.ul<RightNavProps>`
     padding: 0;
     height: 100vh;
     width: 200px;
-    padding-top: 4.5rem;
+    padding-top: 6rem;
     margin-top: 0;
     transition: transform 0.3s ease-in-out;
-
+  
     li {
       color: white;
-
+      padding-left: 20px;
       &:hover {
           background-color: red;
       }
     }
+  
+  }
+
+  @media (min-width: 720px) {
+    width: 300px;
+
   }
 
   @media (min-width: 1020px) {
-      grid-row: 1;
+      display: flex;
       width: 100%;
-      grid-column: 1;
-      flex-flow: row nowrap;
-      color: black;
-      justify-content: space-between;
+      justify-content: end;
       padding: 0;
-  
-      li {
-        padding: 17px 20px;
+
+      li a {
+        padding: 17px 30px;
+        color: black;
+        cursor: pointer;
+        font-size: 18px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: .2s ease;
+        
+        &:hover {
+          color: #7c7c7c;
+        }
       }
+
+      li:last-child a {
+        background-color:black;
+        color: white;
+        padding: 15px 20px;
+        border-radius: 5px;
+        border: 1px solid black;
+        transition: all .3s linear;
+        margin-left: 30px;
+
+          &:hover {
+            background-color:white;
+            color: black;
+            border: 1px solid black;
+            cursor: pointer;
+        }
+      }
+
   }
 `)
 
@@ -80,88 +111,82 @@ const StyledLink = memo(styled.li`
       display: flex;
       justify-content: space-between;
 
-      a {
-          color: black;
-          cursor: pointer;
-          font-size: 18px;
-          font-weight: 600;
-          text-decoration: none;
-          transition: .2s ease;
-          
-          &:hover {
-            color: #7c7c7c;
-          }
-        }
-        
+      
     }
 `)
 
 const StyledUser = memo(styled.div`
-@media (min-width: 1020px) {
-  display: grid;
-  grid-template-rows: 1fr;
-  grid-template-columns: repeat(2, 1fr);
-  align-items: center;
-  font-weight: 700;
-  font-size: 18px;
-  text-align: end;
-  width: min-content;
+    div{
+      color: white;
+      padding-left: 20px;
 
-  div{
-    #log-out-navbar{
-      color: #7c7c7c;
-      margin-left: 40px;
+      #user-email-navbar, #log-out-navbar{
+        font-size: 20px;
+      }
     }
-    #log-out-navbar:hover{
-      cursor: pointer;
-      color: black;
+
+    @media (min-width: 1020px) {
+      display: grid;
+      grid-template-rows: 1fr;
+      grid-template-columns: repeat(2, 1fr);
+      align-items: center;
+      font-weight: 700;
+      font-size: 18px;
+      text-align: end;
+      width: min-content;
+
+      div{
+        #log-out-navbar, #user-email-navbar{
+          color: #7c7c7c;
+          margin-left: 40px;
+        }
+        #log-out-navbar:hover{
+          cursor: pointer;
+          color: black;
+        }
+      }
     }
-  }
-
-
-  
-}
 `)
 
-const StyledAnonymous = memo(styled.div`
-@media (min-width: 1020px) {
-  display: grid;
-  grid-template-rows: 1fr;
-  grid-template-columns: repeat(2, 1fr);
-  align-items: center;
-  font-weight: 700;
-  text-align: center;
-  align-self: center;
+// const StyledAnonymous = memo(styled.div`
+// @media (min-width: 1020px) {
+//   display: grid;
+//   grid-template-rows: 1fr;
+//   grid-template-columns: repeat(2, 1fr);
+//   align-items: center;
+//   font-weight: 700;
+//   text-align: center;
+//   align-self: center;
 
-  a{
-    color:black;
-    text-decoration: none;
-    font-size: 18px;
-  }
+//   a{
+//     color:black;
+//     text-decoration: none;
+//     font-size: 18px;
+//   }
 
-  a:first-child{
-    text-align: end;
-    padding-right: 40px;
-  }
+//   a:first-child{
+//     text-align: end;
+//     padding-right: 40px;
+//   }
 
-  #sign-up-navbar{
-    background-color:black;
-    color: white;
-    padding: 15px 20px;
-    border-radius: 5px;
-    border: 1px solid black;
-    transition: all .3s linear;
+//   #sign-up-navbar{
+//     background-color:black;
+//     color: white;
+//     padding: 15px 20px;
+//     border-radius: 5px;
+//     border: 1px solid black;
+//     transition: all .3s linear;
 
-  }
+//   }
 
-  #sign-up-navbar:hover{
-    background-color:white;
-    color: black;
-    border: 1px solid black;
-    cursor: pointer;
-  }
-}
-`)
+//   #sign-up-navbar:hover{
+//     background-color:white;
+//     color: black;
+//     border: 1px solid black;
+//     cursor: pointer;
+//   }
+// }
+// `)
 
 const RightNav: FC<RightNavProps> = (props) => {
   const { open } = props
@@ -169,6 +194,11 @@ const RightNav: FC<RightNavProps> = (props) => {
   const { signOutUser } = useUserAuth()
   const navigate = useNavigate()
   const user = auth.currentUser
+  // const [hasUser, setHasUser] = useState(false)
+
+  // if (user) {
+  //   setHasUser(true)
+  // }s
 
   useEffect(() => {
     setIsOpen(open)
@@ -190,36 +220,46 @@ const RightNav: FC<RightNavProps> = (props) => {
 
   return (
     <StyledRightNav>
-      <List open={isOpen}>
-        { routes.map((route, index) =>
+      <MenuList open={isOpen}>
+        {routes.map((route, index) =>
           (
             <StyledLink key={index}>
-              <Link to={route.to} onClick={handleBurguer}>
-                {route.label}
-              </Link>
+              { (user && route.nav && route.showWhenLoggedIn)
+                ? <Link to={route.path} onClick={handleBurguer}>
+                  {route.name}
+                </Link>
+                : null
+              }
+
             </StyledLink>
           )
         )}
-        {((!user)
-          ? <StyledAnonymous>
-            <Link to='/sign-in'>
-              <span>Login</span>
-            </Link>
-            <Link to='/sign-up'>
-              <span id='sign-up-navbar'>Create an account</span>
-            </Link>
-          </StyledAnonymous>
-          : <StyledUser>
+        { routes.map((route, index) =>
+          (
+            <StyledLink key={index}>
+              { (!user && route.nav && route.showWhenLoggedOut)
+                ? <Link to={route.path} onClick={handleBurguer}>
+                  {route.name}
+                </Link>
+                : null
+              }
+
+            </StyledLink>
+          )
+        )}
+        {((user) &&
+          <StyledUser>
             <div>
-              {user?.email}
+              <span id='user-email-navbar'> {user?.email} </span>
             </div>
             <div>
               <span id='log-out-navbar' onClick={ handleLogout }>
                 Logout
               </span>
             </div>
-          </StyledUser>)}
-      </List>
+          </StyledUser>
+        )}
+      </MenuList>
 
     </StyledRightNav>
   )

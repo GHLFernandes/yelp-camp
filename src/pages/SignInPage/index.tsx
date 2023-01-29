@@ -50,6 +50,7 @@ const SignInContainer = memo(styled.div`
           position: relative;
           padding: 0 8%;
           top: 40px;
+          width: 20%;
         }
         
         .back-camp{

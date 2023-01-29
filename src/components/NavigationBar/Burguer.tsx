@@ -74,7 +74,7 @@ const StyledBurger = memo(styled.div<BurguerProps>`
   }
 
   @media (min-width: 720px) {
-    right: 85px;
+    right: 98px;
   }
 
   @media (min-width: 1020px) {
