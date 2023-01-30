@@ -48,7 +48,7 @@ const FormContainer = memo(styled.div`
 
 
     @media (min-width: 720px) {
-      padding: 20px 8%;
+      padding: 20px 10%;
     }
 
     @media (min-width: 1020px) {
@@ -64,6 +64,10 @@ const FormContainer = memo(styled.div`
 
 const TestimonialsContainer = memo(styled.div`
     display: block;
+
+    @media (min-width: 720px) {
+      padding: 0 10%;
+    }
 
     @media (min-width: 1020px) {
       align-content: center;
