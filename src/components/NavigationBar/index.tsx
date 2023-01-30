@@ -17,10 +17,6 @@ const Nav = memo(styled.nav`
   padding: 10px 20px;
 	background-color: white;
 
-	&.fixeds{
-		position: fixed;
-	}
-
 	.logo {
 		margin-top: 20px;
 	}
@@ -73,10 +69,6 @@ const Nav2 = memo(styled.div`
     span{
       font-size: 25px;
     }
-  }
-
-  .hide{
-    display: none;
   }
 
   @media (min-width: 720px) {
