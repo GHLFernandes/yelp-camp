@@ -37,7 +37,7 @@ const SignInContainer = memo(styled.div`
 
 const FormContainer = memo(styled.div`
     grid-area: form;
-    padding: 20px 20px;
+    padding: 60px 20px;
     row-gap: 0px;
 
     .sign-up{
