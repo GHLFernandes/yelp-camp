@@ -46,7 +46,7 @@ const Nav = memo(styled.nav`
 `)
 
 const Nav2 = memo(styled.div`
-  height: 150px;
+  height: 40px;
   z-index: 9999;
   float: right;
   margin-right: 20px;
