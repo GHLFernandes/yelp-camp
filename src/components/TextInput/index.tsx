@@ -9,8 +9,7 @@ const CssTextField = styled(TextField)({
   '& .MuiInputBase-input': {
     fontSize: 18,
     color: 'black',
-    paddingTop: 18,
-    paddingBottom: 18
+    height: '0.5em'
   },
   'label + &': {
     marginTop: 0
@@ -31,7 +30,7 @@ const TextInput: FC<TextInputProps> = (props) => {
   const { placeholder, id, label, type, value, onChange } = props
   return (
     <>
-      <InputLabel style={{ fontSize: 25 }} shrink htmlFor={id}>
+      <InputLabel style={{ fontSize: 22 }} shrink htmlFor={id}>
         {label}
       </InputLabel>
       <CssTextField

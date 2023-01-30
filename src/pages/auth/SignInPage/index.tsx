@@ -12,7 +12,6 @@ const Main = memo(styled.div`
     display: grid;
     row-gap: 40px;
 
-
     @media (min-width: 720px) {
         margin: 0 auto;
     }
@@ -23,74 +22,72 @@ const Main = memo(styled.div`
 `)
 
 const SignInContainer = memo(styled.div`
-    .logo{
-        position: absolute;
-        display: block;
-        top: 30px;
-        padding: 0 20px;
+  .logo{
+    position: absolute;
+    display: block;
+    top: 30px;
+    padding: 0 20px;
+  }
+
+  .back-camp{
+    float: right;
+    margin-top: 45px;
+    margin-right: 20px;
+
+    a{
+      text-decoration: none;
+      color: #6B6874;
     }
 
-    .back-camp{
-      float: right;
-      margin-top: 45px;
-      margin-right: 20px;
+    span{
+      font-size: 25px;
+    }
+  }
 
-      a{
-        text-decoration: none;
-        color: #6B6874;
+  @media (min-width: 720px) {
+      .logo{
+        position: relative;
+        padding: 0 8%;
+        top: 40px;
+        width: 20%;
       }
-
-      span{
-        font-size: 25px;
+      
+      .back-camp{
+        margin-top: -10px;
+        margin-right: 9%;
       }
-    }
+  }
 
-    @media (min-width: 720px) {
-        .logo{
-          position: relative;
-          padding: 0 8%;
-          top: 40px;
-          width: 20%;
-        }
-        
-        .back-camp{
-          margin-top: -10px;
-          margin-right: 9%;
-        }
-    }
+  @media (min-width: 1020px) {
+      grid-template-rows: 100px 1fr;
+      grid-template-columns: repeat(12, 1fr);
+      display: grid;
 
-    @media (min-width: 1020px) {
-        grid-template-rows: 1fr;
-        grid-template-columns: repeat(12, 1fr);
-        display: grid;
-
-        .logo{
-            display: grid;
-            padding: 40px 20%;
-            grid-column: 2 / span 3;
-            grid-row: 1;
-            top: 0px;
-          }
-
-        .back-camp{
+      .logo{
           display: grid;
-          padding: 30px;
-          grid-column: 6 / span 3;
+          padding: 30px 16%;
+          grid-column: 2 / span 3;
           grid-row: 1;
-
-          span{
-            font-size: 30px;
-          }
+          top: 0px;
         }
-    }
+
+      .back-camp{
+        display: grid;
+        padding: 30px;
+        grid-column: 6 / span 3;
+        grid-row: 1;
+
+        span{
+          font-size: 30px;
+        }
+      }
+  }
 `)
 
 const FormContainer = memo(styled.div`
     grid-area: form;
     padding: 20px 20px;
     row-gap: 0px;
-    margin-top: 70px;
-    margin-bottom: 20px;
 
     .sign-up{
         padding: 0px;
@@ -114,10 +111,11 @@ const FormContainer = memo(styled.div`
 
     @media (min-width: 1020px) {
         display: grid;
-        grid-column: 2 / span 5;
-        grid-row: 1 / span 2;
+        grid-column: 2 / span 6;
+        grid-row: 2;
+        align-content: center;
         width: 100%;
-        padding: 60px 12%;
+        justify-content: center;
         z-index:2;
       }
 `)
@@ -126,13 +124,15 @@ const TestimonialsContainer = memo(styled.div`
     display: block;
 
     @media (min-width: 1020px) {
-        grid-area: testimonials;
-        display: grid;
-        grid-column: 9 / span 12;
-        grid-row: 1 / span 2;
-        width: 100%;
-        height: 100vh;
-      }
+      align-content: center;
+      grid-area: testimonials;
+      display: grid;
+      grid-column: 9 / span 12;
+      grid-row: 1 / span 2;
+      width: 100%;
+      height: 100vh;
+      background-color: #f7f7f7;
+    }
 `)
 
 const SignInPage: FC = () => {
@@ -146,7 +146,7 @@ const SignInPage: FC = () => {
           <BackCamp />
         </div>
         <FormContainer>
-          <Title>Start exploring camps from all around the world.</Title>
+          <Title className='title-forms'>Start exploring camps from all around the world.</Title>
           <SignInForm />
           <p className='sign-up'>Not a user yet? <Link className='sign-up-link' to='/sign-up'>Create an account</Link></p>
         </FormContainer>

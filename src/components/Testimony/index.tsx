@@ -5,7 +5,6 @@ import styled from 'styled-components'
 import { ReactComponent as UserTestimonialPhoto } from './img/User Testimonial.svg'
 
 const StyledTestimony = memo(styled.div`
-    background-color: #f7f7f7;
     padding: 10px 20px;
 
     @media (min-width: 720px) {
@@ -14,7 +13,6 @@ const StyledTestimony = memo(styled.div`
 
     @media (min-width: 1020px) {
         display: block;
-        padding: 30vh 22% 0 22%;
       }
 `)
 

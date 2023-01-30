@@ -16,6 +16,7 @@ const StyledRightNav = memo(styled.div`
   grid-row: 1;
   grid-column: 1;
   margin-left: 20px;
+  margin-top: 14px;
 `)
 
 const MenuList = memo(styled.ul<RightNavProps>`

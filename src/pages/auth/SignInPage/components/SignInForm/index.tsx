@@ -10,8 +10,8 @@ import GoogleButton from 'react-google-button'
 import ErroText from '../../../../../components/ErroText'
 
 const StyledSignInForm = memo(styled.form`
-  padding-top: 20px;
   display: block;
+  padding-top: 20px;
 
   .g-btn{
     width: 100% !important;
