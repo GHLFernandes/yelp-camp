@@ -1,3 +1,5 @@
+/* eslint-disable no-useless-return */
+
 import type { FC } from 'react'
 import React, { memo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -13,10 +15,11 @@ const StyledForgotPassForm = memo(styled.form`
 `)
 
 const ForgotPassForm: FC = () => {
-  const { erro, setErro, resetPassRequest } = useUserAuth()
+  const { resetPassRequest } = useUserAuth()
   const [email, setEmail] = useState('')
   const [sending, setSending] = useState(false)
   const [sent, setSent] = useState(false)
+  const [erro, setErro] = useState('')
 
   const navigate = useNavigate()
 
@@ -38,6 +41,7 @@ const ForgotPassForm: FC = () => {
         setSending(false)
         setSent(false)
         setErro(error.message)
+        return
       })
 
     if (sent) {

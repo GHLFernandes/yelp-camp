@@ -1,5 +1,5 @@
 import type { FC } from 'react'
-import React, { memo, useState, useEffect } from 'react'
+import React, { memo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Button from '../../../../../components/Button'
 import TextInput from '../../../../../components/TextInput'
@@ -14,18 +14,15 @@ const StyledChangePassForm = memo(styled.form`
 `)
 
 const ChangePassForm: FC = () => {
-  const { changePass, erro, setErro } = useUserAuth()
+  const { changePass } = useUserAuth()
   const [oldPass, setOldPass] = useState('')
   const [newPass, setNewPass] = useState('')
   const [confirm, setConfirm] = useState('')
   const [changing, setChanging] = useState(false)
+  const [erro, setErro] = useState('')
 
   const navigate = useNavigate()
   const user = auth.currentUser
-
-  useEffect(() => {
-    setErro('')
-  }, [])
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault()
@@ -56,6 +53,7 @@ const ChangePassForm: FC = () => {
   return (
     <StyledChangePassForm onSubmit={async (e: React.FormEvent<HTMLFormElement>) => { await handleSubmit(e) }}>
       <TextInput
+        auto-complete='current-password'
         placeholder='Old Password'
         id='old-password'
         label='Old Password'
@@ -64,6 +62,7 @@ const ChangePassForm: FC = () => {
         onChange={(e) => { setOldPass(e.target.value) }}
       />
       <TextInput
+        auto-complete='new-password'
         placeholder='Choose Password'
         id='password'
         label='Password'
@@ -72,6 +71,7 @@ const ChangePassForm: FC = () => {
         onChange={(e) => { setNewPass(e.target.value) }}
       />
       <TextInput
+        auto-complete='new-password'
         placeholder='Confirm Password'
         id='confirm-password'
         label='Confirm Password'

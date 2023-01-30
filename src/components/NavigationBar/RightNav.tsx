@@ -2,7 +2,7 @@ import type { FC } from 'react'
 import React, { memo, useEffect } from 'react'
 import styled from 'styled-components'
 import routes from '../../_routes'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { useUserAuth } from '../../common/contexts/UserAuthContext'
 import { auth } from '../../config/firebase'
 
@@ -168,7 +168,6 @@ const StyledUser = memo(styled.div`
 const RightNav: FC<RightNavProps> = (props) => {
   const { open, setOpen } = props
   const { signOutUser } = useUserAuth()
-  const navigate = useNavigate()
   const user = auth.currentUser
 
   useEffect(() => {
@@ -176,12 +175,12 @@ const RightNav: FC<RightNavProps> = (props) => {
   }, [open, setOpen])
 
   const handleLogout = async (): Promise<void> => {
-    try {
-      await signOutUser()
-      navigate('/sign-in')
-    } catch (err) {
-      console.log(err)
-    }
+    await signOutUser()
+      .then(() => {
+      })
+      .catch((err: unknown) => {
+        console.log(err)
+      })
   }
 
   return (
@@ -216,9 +215,9 @@ const RightNav: FC<RightNavProps> = (props) => {
               <span id='user-email-navbar'> {user?.email} </span>
             </div>
             <div>
-              <span id='log-out-navbar' onClick={ handleLogout }>
+              <Link id='log-out-navbar' to='/sign-in' onClick={ handleLogout }>
                 Logout
-              </span>
+              </Link>
             </div>
           </StyledUser>
         )}

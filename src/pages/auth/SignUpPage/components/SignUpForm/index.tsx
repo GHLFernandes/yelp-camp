@@ -1,5 +1,5 @@
 import type { FC } from 'react'
-import React, { memo, useState, useEffect } from 'react'
+import React, { memo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Button from '../../../../../components/Button'
 import TextInput from '../../../../../components/TextInput'
@@ -13,17 +13,14 @@ const StyledSignUpForm = memo(styled.form`
 `)
 
 const SignUpForm: FC = () => {
-  const { signUp, erro, setErro } = useUserAuth()
+  const { signUp } = useUserAuth()
   const [email, setEmail] = useState('')
   const [pass, setPass] = useState('')
   const [confirm, setConfirm] = useState('')
   const [registering, setRegistering] = useState(false)
+  const [erro, setErro] = useState('')
 
   const navigate = useNavigate()
-
-  useEffect(() => {
-    setErro('')
-  }, [])
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault()
@@ -64,6 +61,7 @@ const SignUpForm: FC = () => {
         onChange={(e) => { setEmail(e.target.value) }}
       />
       <TextInput
+        auto-complete='current-password'
         placeholder='Choose Password'
         id='password'
         label='Password'
@@ -72,6 +70,7 @@ const SignUpForm: FC = () => {
         onChange={(e) => { setPass(e.target.value) }}
       />
       <TextInput
+        auto-complete='current-password'
         placeholder='Confirm Password'
         id='confirm-password'
         label='Confirm Password'

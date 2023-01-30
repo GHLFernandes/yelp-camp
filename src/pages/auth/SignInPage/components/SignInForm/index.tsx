@@ -1,5 +1,6 @@
+/* eslint-disable no-useless-return */
 import type { FC } from 'react'
-import React, { useEffect, memo, useState } from 'react'
+import React, { memo, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import Button from '../../../../../components/Button'
 import TextInput from '../../../../../components/TextInput'
@@ -18,16 +19,13 @@ const StyledSignInForm = memo(styled.form`
 `)
 
 const SignInForm: FC = () => {
-  const { signIn, googleSignIn, setErro, erro } = useUserAuth()
+  const { signIn, googleSignIn } = useUserAuth()
   const [email, setEmail] = useState('')
   const [pass, setPass] = useState('')
+  const [erro, setErro] = useState('')
   const [authenticating, setAuthenticating] = useState(false)
 
   const navigate = useNavigate()
-
-  useEffect(() => {
-    setErro('')
-  }, [])
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault()
@@ -36,13 +34,14 @@ const SignInForm: FC = () => {
 
     setAuthenticating(true)
 
-    try {
-      await signIn(email, pass)
-      navigate('/camps')
-    } catch (error: any) {
-      setAuthenticating(false)
-      setErro(error.message)
-    }
+    await signIn(email, pass)
+      .then(() => {
+        navigate('/camps')
+      })
+      .catch((error: { message: string }) => {
+        setAuthenticating(false)
+        setErro(error.message)
+      })
   }
 
   const handleGoogleSignIn = async (): Promise<void> => {
@@ -54,6 +53,7 @@ const SignInForm: FC = () => {
         console.log(error)
         setAuthenticating(false)
         setErro(error.message)
+        return
       })
   }
 
@@ -70,7 +70,8 @@ const SignInForm: FC = () => {
 
         />
         <TextInput
-          placeholder='Choose Password'
+          auto-complete='current-password'
+          placeholder='Enter your Password'
           id='password'
           label='Password'
           type='password'
