@@ -4,8 +4,10 @@ const LandingPage = lazy(async () => await import('./pages/LandingPage'))
 const SearchPage = lazy(async () => await import('./pages/SearchPage'))
 const AddCampground = lazy(async () => await import('./pages/AddCampground'))
 const AddNewComment = lazy(async () => await import('./pages/AddNewComment'))
-const SignUpPage = lazy(async () => await import('./pages/SignUpPage'))
-const SignInPage = lazy(async () => await import('./pages/SignInPage'))
+const SignUpPage = lazy(async () => await import('./pages/auth/SignUpPage'))
+const SignInPage = lazy(async () => await import('./pages/auth/SignInPage'))
+const ChangePassPage = lazy(async () => await import('./pages/auth/ChangePassPage'))
+const ForgotPasswordPage = lazy(async () => await import('./pages/auth/ForgotPassPage'))
 
 interface IRoute {
   path: string
@@ -71,13 +73,25 @@ const routes: IRoute[] = [
     nav: true,
     showWhenLoggedIn: false,
     showWhenLoggedOut: true
+  },
+  {
+    path: '/change-pass',
+    component: ChangePassPage,
+    name: 'Change Password Page',
+    protected: true,
+    nav: false,
+    showWhenLoggedIn: true,
+    showWhenLoggedOut: false
+  },
+  {
+    path: '/forgot-pass',
+    component: ForgotPasswordPage,
+    name: 'Forgot Password Page',
+    protected: false,
+    nav: false,
+    showWhenLoggedIn: true,
+    showWhenLoggedOut: true
   }
-  // {
-  //     path: '/change',
-  //     component: ChangePasswordPage,
-  //     name: 'Change Password Page',
-  //     protected: true
-  // },
   // {
   //     path: '/logout',
   //     component: LogoutPage,
@@ -90,12 +104,6 @@ const routes: IRoute[] = [
   //     name: 'Forgot Password Page',
   //     protected: false
   // },
-  // {
-  //     path: '/reset',
-  //     component: ResetPasswordPage,
-  //     name: 'Reset Password Page',
-  //     protected: false
-  // }
 ]
 
 export default routes

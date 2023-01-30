@@ -16,7 +16,7 @@ const Nav = memo(styled.nav`
   padding: 10px 20px;
 	background-color: white;
 
-	&.fixed{
+	&.fixeds{
 		position: fixed;
 	}
 
@@ -62,7 +62,7 @@ const NavBar: FC = () => {
 
   return (
 
-    <Nav className={` ${(offset > 0 && (pathname !== '/' && pathname !== '/sign-up' && pathname !== '/sign-in') ? 'fixed' : '')} ${((pathname === '/' || pathname === '/sign-up' || pathname === '/sign-in') ? 'hide_navbar' : '')}` }>
+    <Nav className={` ${(offset > 0 && (pathname !== '/' && pathname !== '/sign-up' && pathname !== '/sign-in') ? 'fixeds' : '')} ${((pathname === '/' || pathname === '/sign-up' || pathname === '/sign-in') ? 'hide_navbar' : '')}` }>
       <div className='logo'>
         <Logo />
       </div>

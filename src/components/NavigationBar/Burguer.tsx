@@ -34,8 +34,6 @@ const StyledDiv = memo(styled.div`
 `)
 
 const StyledBurger = memo(styled.div<BurguerProps>`
-  width: 1rem;
-  height: 1rem;
   position: fixed;
   padding: 10px;
   top: 32px;

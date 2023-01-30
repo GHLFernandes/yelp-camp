@@ -1,8 +1,8 @@
 import type { FC } from 'react'
 import React, { createContext, useContext, useState } from 'react'
 import type { User } from 'firebase/auth'
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, GoogleAuthProvider, signInWithPopup, updatePassword } from 'firebase/auth'
-import { auth } from '../../../firebase.js'
+import { sendPasswordResetEmail, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, GoogleAuthProvider, signInWithPopup, updatePassword } from 'firebase/auth'
+import { auth } from '../../../config/firebase'
 
 interface UserAuthContextProviderProps {
   children: JSX.Element
@@ -20,8 +20,8 @@ export const UserAuthContextProvider: FC<UserAuthContextProviderProps> = (props)
       .then((userCredential) => {
       // Signed up
       })
-      .catch((error: { message: string, code: string }) => {
-        setErro(error.code)
+      .catch((error: { message: string }) => {
+        setErro(error.message)
       })
   }
 
@@ -31,7 +31,7 @@ export const UserAuthContextProvider: FC<UserAuthContextProviderProps> = (props)
         // Signed in
         console.log('Sign in')
       })
-      .catch((error: { message: string, code: string }) => {
+      .catch((error: { message: string }) => {
         setErro(error.message)
       })
   }
@@ -42,7 +42,7 @@ export const UserAuthContextProvider: FC<UserAuthContextProviderProps> = (props)
         console.log('Sign out')
         localStorage.setItem('user', '')
       })
-      .catch((error: { message: string, code: string }) => {
+      .catch((error: { message: string }) => {
         setErro(error.message)
       })
   }
@@ -54,7 +54,7 @@ export const UserAuthContextProvider: FC<UserAuthContextProviderProps> = (props)
       .then((userCredential) => {
       // Signed in
       })
-      .catch((error: { message: string, code: string }) => {
+      .catch((error: { message: string }) => {
         setErro(error.message)
       })
   }
@@ -64,13 +64,23 @@ export const UserAuthContextProvider: FC<UserAuthContextProviderProps> = (props)
       .then(() => {
         console.log('Pass Changed!')
       })
-      .catch((error: { message: string, code: string }) => {
+      .catch((error: { message: string }) => {
+        setErro(error.message)
+      })
+  }
+
+  const resetPassRequest = async (email: string): Promise<any> => {
+    await sendPasswordResetEmail(auth, email)
+      .then(() => {
+        console.log('Link sent!')
+      })
+      .catch((error: { message: string }) => {
         setErro(error.message)
       })
   }
 
   return (
-    <UserAuthContext.Provider value={{ signUp, signIn, signOutUser, googleSignIn, changePass, erro, setErro, loggedIn }} >
+    <UserAuthContext.Provider value={{ signUp, signIn, signOutUser, googleSignIn, changePass, erro, setErro, loggedIn, resetPassRequest }} >
       { children }
     </UserAuthContext.Provider>
   )

@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/strict-boolean-expressions */
-/* eslint-disable @typescript-eslint/no-misused-promises */
 import type { FC } from 'react'
 import React, { memo, useEffect } from 'react'
 import styled from 'styled-components'
@@ -118,33 +116,34 @@ const StyledLink = memo(styled.li`
 `)
 
 const StyledUser = memo(styled.div`
+  @media (max-width: 1020px) { 
     div{
-      color: white;
-      margin-top: 15px;
-      width: 100%;
-
-      #user-email-navbar, #log-out-navbar{
-        font-size: 20px;
-        padding: 10px 0 10px 20px;
-
-      }
-
-      #log-out-navbar{
-        display: inline-block;
-        width: 100%;
         color: white;
+        margin-top: 15px;
+        width: 100%;
 
-        &:hover {
-            background-color: #b3b3b3;
-            cursor: pointer;
-            text-decoration: underline;
+        #user-email-navbar, #log-out-navbar{
+          font-size: 20px;
+          padding: 10px 0 10px 20px;
+
+        }
+
+        #log-out-navbar{
+          display: inline-block;
+          width: 100%;
+          color: white;
+
+          &:hover {
+              background-color: #b3b3b3;
+              cursor: pointer;
+              text-decoration: underline;
+          }
         }
     }
+  }
 
     @media (min-width: 1020px) {
-      display: grid;
-      grid-template-rows: 1fr;
-      grid-template-columns: repeat(2, 1fr);
+      display: flex
       align-items: center;
       font-weight: 700;
       font-size: 18px;
@@ -152,6 +151,8 @@ const StyledUser = memo(styled.div`
       width: min-content;
 
       div{
+        padding-top: 17px;
+
         #log-out-navbar, #user-email-navbar{
           color: #7c7c7c;
           margin-left: 40px;

@@ -1,12 +1,12 @@
 import type { FC } from 'react'
 import React, { memo } from 'react'
 import styled from 'styled-components'
-import Title from '../../components/Title'
+import Title from '../../../components/Title'
 import SignInForm from './components/SignInForm'
 import { Link } from 'react-router-dom'
-import Testimony from '../../components/Testimony'
-import Logo from '../../components/Logo'
-import BackCamp from '../../components/BackCamp'
+import Testimony from '../../../components/Testimony'
+import Logo from '../../../components/Logo'
+import BackCamp from '../../../components/BackCamp'
 
 const Main = memo(styled.div`
     display: grid;
@@ -94,7 +94,7 @@ const FormContainer = memo(styled.div`
 
     .sign-up{
         padding: 0px;
-        margin: 0px;
+        margin-top: 20px;
         color: #6c6c6c;
     }
 

@@ -1,12 +1,12 @@
 import type { FC } from 'react'
 import React, { memo } from 'react'
 import styled from 'styled-components'
-import Title from '../../components/Title'
+import Title from '../../../components/Title'
 import SignUpForm from './components/SignUpForm'
 import { Link } from 'react-router-dom'
-import Testimony from '../../components/Testimony'
-import Logo from '../../components/Logo'
-import BackCamp from '../../components/BackCamp'
+import Testimony from '../../../components/Testimony'
+import Logo from '../../../components/Logo'
+import BackCamp from '../../../components/BackCamp'
 
 const Main = memo(styled.div`
     display: grid;

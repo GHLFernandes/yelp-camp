@@ -1,10 +1,11 @@
 import type { FC } from 'react'
-import React, { memo, useState } from 'react'
+import React, { memo, useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import Button from '../../../../components/Button'
-import TextInput from '../../../../components/TextInput'
+import Button from '../../../../../components/Button'
+import TextInput from '../../../../../components/TextInput'
 import styled from 'styled-components'
-import { useUserAuth } from '../../../../common/contexts/UserAuthContext'
+import { useUserAuth } from '../../../../../common/contexts/UserAuthContext'
+import ErroText from '../../../../../components/ErroText'
 
 const StyledSignUpForm = memo(styled.form`
   padding-top: 20px;
@@ -20,27 +21,20 @@ const SignUpForm: FC = () => {
 
   const navigate = useNavigate()
 
+  useEffect(() => {
+    setErro('')
+  }, [])
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault()
 
-    try {
-      await signUp(email, pass)
-      navigate('/camps')
-    } catch (error: unknown) {
-      console.log(error)
-    }
-
-    if (erro.code === 'auth/weak-password') {
-      setErro('Please enter a stronger password.')
-      return
-    } else if (erro.code === 'auth/email-already-in-use') {
-      setErro('Email already in use.')
-      return
-    } else {
-      setErro('Unable to register. Please try again later.')
-    }
-
     if (erro !== '') setErro('')
+
+    if (confirm !== pass) {
+      setErro('Passwords does not match!')
+      setRegistering(false)
+      return
+    }
 
     setRegistering(true)
 
@@ -48,9 +42,15 @@ const SignUpForm: FC = () => {
       .then(() => {
         navigate('/')
       })
-      .catch((error: { code: string | string[] }) => {
+      .catch((error: { message: string }) => {
         console.log(error)
+        setRegistering(false)
+        setErro(error.message)
       })
+
+    if (!registering) {
+      navigate('/')
+    }
   }
 
   return (
@@ -79,6 +79,7 @@ const SignUpForm: FC = () => {
         value={confirm}
         onChange={(e) => { setConfirm(e.target.value) }}
       />
+      <ErroText erro={erro}/>
       <Button type='submit' className='full-width createAccountBtn' disabled={registering}>Create an account</Button>
     </StyledSignUpForm>
   )

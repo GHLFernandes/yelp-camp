@@ -32,7 +32,8 @@
         "react-hooks"
     ],
     "rules": {
-        "no-shadow": "off",
+        "@typescript-eslint/strict-boolean-expressions": 0,
+        "@typescript-eslint/no-misused-promises": 0,
         "no-use-before-define": "off",
         "@typescript-eslint/restrict-plus-operands": "off",
         "@typescript-eslint/no-use-before-define": ["error"],

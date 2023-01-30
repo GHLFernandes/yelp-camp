@@ -7,16 +7,18 @@ import ProtectedRoute from './components/ProtectedRoute'
 import { auth } from './config/firebase'
 import { UserAuthContextProvider } from './common/contexts/UserAuthContext'
 import routes from './_routes'
+import { onAuthStateChanged } from 'firebase/auth'
 
 const AppRouter: FC = () => {
   const [loading, setLoading] = useState(true)
   const [loggedIn, setLoggedIn] = useState(false)
 
   useEffect(() => {
-    auth.onAuthStateChanged(user => {
-      if (user == null) {
+    onAuthStateChanged(auth, user => {
+      if (!user) {
         console.log('No user detected')
         setLoggedIn(false)
+        localStorage.setItem('user', '')
       } else {
         console.log('User detected.')
         setLoggedIn(true)
@@ -28,7 +30,7 @@ const AppRouter: FC = () => {
   }, [])
 
   return (
-    <main className='container'>
+    <main>
       <UserAuthContextProvider loggedIn={loggedIn}>
         <Router>
           <NavigationBar />
@@ -40,7 +42,7 @@ const AppRouter: FC = () => {
                   path={route.path}
                   element ={
                     (route.protected)
-                      ? <ProtectedRoute><route.component/></ProtectedRoute>
+                      ? <ProtectedRoute ><route.component /></ProtectedRoute>
                       : <route.component />
                   }
 
