@@ -22,7 +22,7 @@ const Nav = memo(styled.nav`
 	}
 
 	.logo {
-		margin-top: 25px;
+		margin-top: 20px;
 	}
 
   @media (min-width: 720px) {
@@ -62,7 +62,7 @@ const Nav2 = memo(styled.div`
   .back-camp{
     margin-top: 15px;
     float: right;
-  
+
     a{
       text-decoration: none;
       color: #6B6874;
@@ -73,6 +73,10 @@ const Nav2 = memo(styled.div`
     span{
       font-size: 25px;
     }
+  }
+
+  .hide{
+    display: none;
   }
 
   @media (min-width: 720px) {

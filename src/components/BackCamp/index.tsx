@@ -6,7 +6,7 @@ import styled from 'styled-components'
 const StyledBackCamp = styled.div`
   @media (max-width: 720px){
     font-size: 16px;
-    margin-top: 12px;
+    margin-top: 18px;
   }  
 `
 
