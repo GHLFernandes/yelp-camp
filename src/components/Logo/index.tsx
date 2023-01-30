@@ -10,6 +10,11 @@ const StyledLogo = styled.div`
       width: 150px;
     }
 
+    @media (min-width: 720px) {
+        width: 30%;
+        position: relative;
+    }
+    
     @media (min-width: 1020px) {
         width: 100%;
         position: relative;

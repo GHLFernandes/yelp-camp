@@ -1,7 +1,6 @@
 import type { FC } from 'react'
 import React, { memo } from 'react'
 import styled from 'styled-components'
-import Logo from '../../components/Logo'
 import Title from '../../components/Title'
 import Description from '../../components/Description'
 import Partenered from './components/Partenered'
@@ -13,6 +12,7 @@ import { Link } from 'react-router-dom'
 
 const StyledLandingPage = memo(styled.div`
   @media (min-width: 720px) {
+    
   }
 
   @media (min-width: 1020px) {
@@ -29,7 +29,7 @@ const ContainerLP = memo(styled.div`
     grid-template-rows: 1fr;
     grid-template-columns: repeat(12, 1fr);
     display: grid;
-
+    align-items: center;
   }
 `)
 
@@ -51,6 +51,10 @@ const InfoCamp = memo(styled.div`
   .logo{
     position: absolute;
     top: 20px;
+  }
+
+  @media (min-width: 720px) {
+    padding: 20px 8%;
   }
 
   @media (min-width: 1020px) {
@@ -107,9 +111,6 @@ const LandingPage: FC = () => {
       <ContainerLP >
         <ImgCamp />
         <InfoCamp>
-          <div className='logo'>
-            <Logo />
-          </div>
           <div>
             <Title>Explore the best camps on Earth.</Title>
             <Description>YelpCamp is a curated list od the best camping spots on Earth. Unfiltered and unbiased reviews.</Description>

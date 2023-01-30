@@ -21,7 +21,7 @@ const StyledFooter = memo(styled.section`
     }
   
     @media (min-width: 1020px) {
-  
+      padding: 20px 8.3%;
     }
 `)
 

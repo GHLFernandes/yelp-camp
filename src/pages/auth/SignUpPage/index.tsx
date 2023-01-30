@@ -5,8 +5,6 @@ import Title from '../../../components/Title'
 import SignUpForm from './components/SignUpForm'
 import { Link } from 'react-router-dom'
 import Testimony from '../../../components/Testimony'
-import Logo from '../../../components/Logo'
-import BackCamp from '../../../components/BackCamp'
 
 const Main = memo(styled.div`
     display: grid;
@@ -14,6 +12,9 @@ const Main = memo(styled.div`
 
     @media (min-width: 720px) {
         margin: 0 auto;
+        align-items: center;
+        display: grid;
+        height: 100vh;    
     }
   
     @media (min-width: 1020px) {
@@ -22,64 +23,14 @@ const Main = memo(styled.div`
 `)
 
 const SignUpContainer = memo(styled.div`
-  .logo{
-    position: absolute;
-    display: block;
-    top: 30px;
-    padding: 0 20px;
-  }
-
-  .back-camp{
-    float: right;
-    margin-top: 45px;
-    margin-right: 20px;
-   
-    a{
-      text-decoration: none;
-      color: #6B6874;
-    }
-
-    span{
-      font-size: 25px;
-    }
-  }
 
   @media (min-width: 720px) {
-    .logo{
-      position: relative;
-      padding: 0 8%;
-      top: 40px;
-    }
-  
-    .back-camp{
-      margin-top: -10px;
-      margin-right: 9%;
-    }
   }
 
   @media (min-width: 1020px) {
     grid-template-rows: 100px 1fr;
     grid-template-columns: repeat(12, 1fr);
     display: grid;
-
-    .logo{
-        display: grid;
-        padding: 30px 16%;
-        grid-column: 2 / span 3;
-        grid-row: 1;
-        top: 0px;
-      }
-
-    .back-camp{
-      display: grid;
-      padding: 30px;
-      grid-column: 6 / span 3;
-      grid-row: 1;
-
-      span{
-        font-size: 30px;
-      }
-    }
   }
 `)
 
@@ -138,12 +89,6 @@ const SignUpPage: FC = () => {
   return (
     <Main>
       <SignUpContainer>
-        <div className='logo'>
-          <Logo />
-        </div>
-        <div className='back-camp'>
-          <BackCamp />
-        </div>
         <FormContainer>
           <Title className='title-forms'>Start exploring camps from all around the world.</Title>
           <SignUpForm />

@@ -5,82 +5,33 @@ import Title from '../../../components/Title'
 import SignInForm from './components/SignInForm'
 import { Link } from 'react-router-dom'
 import Testimony from '../../../components/Testimony'
-import Logo from '../../../components/Logo'
-import BackCamp from '../../../components/BackCamp'
 
 const Main = memo(styled.div`
-    display: grid;
-    row-gap: 40px;
-
-    @media (min-width: 720px) {
-        margin: 0 auto;
-    }
-  
-    @media (min-width: 1020px) {
-        grid-template-rows: 1fr;
-      }
-`)
-
-const SignInContainer = memo(styled.div`
-  .logo{
-    position: absolute;
-    display: block;
-    top: 30px;
-    padding: 0 20px;
-  }
-
-  .back-camp{
-    float: right;
-    margin-top: 45px;
-    margin-right: 20px;
-
-    a{
-      text-decoration: none;
-      color: #6B6874;
-    }
-
-    span{
-      font-size: 25px;
-    }
-  }
+  display: grid;
+  row-gap: 40px;
 
   @media (min-width: 720px) {
-      .logo{
-        position: relative;
-        padding: 0 8%;
-        top: 40px;
-        width: 20%;
-      }
-      
-      .back-camp{
-        margin-top: -10px;
-        margin-right: 9%;
-      }
+    margin: 0 auto;
+    align-items: center;
+    display: grid;
+    height: 100vh;    
   }
 
   @media (min-width: 1020px) {
-      grid-template-rows: 100px 1fr;
-      grid-template-columns: repeat(12, 1fr);
-      display: grid;
+    grid-template-rows: 1fr;
+  }
+`)
 
-      .logo{
-          display: grid;
-          padding: 30px 16%;
-          grid-column: 2 / span 3;
-          grid-row: 1;
-          top: 0px;
-        }
+const SignInContainer = memo(styled.div`
 
-      .back-camp{
-        display: grid;
-        padding: 30px;
-        grid-column: 6 / span 3;
-        grid-row: 1;
+  @media (min-width: 720px) {
+      
+  }
 
-        span{
-          font-size: 30px;
-        }
-      }
+  @media (min-width: 1020px) {
+    grid-template-rows: 100px 1fr;
+    grid-template-columns: repeat(12, 1fr);
+    display: grid;
   }
 `)
 
@@ -90,23 +41,22 @@ const FormContainer = memo(styled.div`
     row-gap: 0px;
 
     .sign-up{
-        padding: 0px;
-        margin-top: 20px;
-        color: #6c6c6c;
+      padding: 0px;
+      margin-top: 20px;
+      color: #6c6c6c;
     }
 
     .sign-up-link{
-        color: #009aca;
-        font-weight: 600
-
+      color: #009aca;
+      font-weight: 600
     }
 
     .sign-up-link:hover, .sign-up-link:focus{
-        color: #006484;
+      color: #006484;
     }
 
     @media (min-width: 720px) {
-        padding: 20px 8%;
+      padding: 20px 8%;
     }
 
     @media (min-width: 1020px) {
@@ -139,12 +89,6 @@ const SignInPage: FC = () => {
   return (
     <Main>
       <SignInContainer>
-        <div className='logo'>
-          <Logo />
-        </div>
-        <div className='back-camp'>
-          <BackCamp />
-        </div>
         <FormContainer>
           <Title className='title-forms'>Start exploring camps from all around the world.</Title>
           <SignInForm />

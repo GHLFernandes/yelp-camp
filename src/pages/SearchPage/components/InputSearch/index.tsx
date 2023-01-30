@@ -10,8 +10,7 @@ const CssTextField = styled(TextField)({
   '& .MuiInputBase-input': {
     fontSize: 18,
     color: 'black',
-    paddingTop: 18,
-    paddingBottom: 18
+    height: '0.5em'
   }
 
 })

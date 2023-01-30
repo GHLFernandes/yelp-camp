@@ -4,7 +4,7 @@ import styled from 'styled-components'
 
 const StyledButton = memo(styled.button`
     display: inline-block;
-    padding: 15px;
+    padding: 10px;
     background-color: black;
     color: white;
     font-size: 16px;

@@ -6,7 +6,9 @@ import Button from '../../components/Button'
 import TextArea from '../../components/TextArea'
 
 const StyledAddNewComment = memo(styled.div`
-    display: grid;
+  align-items: center;
+  display: grid;
+  height: 100vh;    
 `)
 
 const Main = memo(styled.div`

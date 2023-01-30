@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
 const StyledBackCamp = styled.div`
-  @media (min-width: 720px){
-    z-index: 999;
-
+  @media (max-width: 720px){
+    font-size: 16px;
+    margin-top: 12px;
   }  
 `
 
@@ -14,7 +14,7 @@ const BackCamp: FC = () => {
   return (
     <StyledBackCamp>
       <Link to='/camps'>
-        <p><span>&#8592;</span>Back to Campgrounds</p>
+        <span>&#8592;</span>Back to Campgrounds
       </Link>
     </StyledBackCamp>
   )

@@ -5,17 +5,17 @@ import Title from '../../../components/Title'
 import ForgotPassForm from './components/ForgotPassForm'
 
 const Main = memo(styled.div`
-    display: grid;
-    row-gap: 40px;
+  align-items: center;
+  display: grid;
+  height: 100vh;  
+  padding: 0 20px;
 
+  @media (min-width: 720px) {
+      margin: 0 auto;
+  }
 
-    @media (min-width: 720px) {
-        margin: 0 auto;
+  @media (min-width: 1020px) {
     }
-  
-    @media (min-width: 1020px) {
-        display: block;
-      }
 `)
 
 const ForgotPassContainer = memo(styled.div`
@@ -24,8 +24,6 @@ const ForgotPassContainer = memo(styled.div`
     }
 
     @media (min-width: 1020px) {
-        display: block;
-
     }
 `)
 
@@ -33,8 +31,6 @@ const FormContainer = memo(styled.div`
     grid-area: form;
     padding: 20px 20px;
     row-gap: 0px;
-    margin-top: 70px;
-    margin-bottom: 20px;
 
     @media (min-width: 720px) {
         padding: 20px 8%;

@@ -9,22 +9,24 @@ import TextArea from '../../components/TextArea'
 // import { useNavigate } from 'react-router-dom'
 
 const StyledAddCampground = memo(styled.div`
-    display: grid;
+  align-items: center;
+  display: grid;
+  height: 100vh;    
 `)
 
 const Main = memo(styled.div`
-    display: grid;
-    row-gap: 40px;
-    padding: 10px 20px;
+  display: grid;
+  row-gap: 40px;
+  padding: 10px 20px;
 
-    @media (min-width: 720px) {
-        width: 80%;
-        margin: 0 auto;
-    }
-  
-    @media (min-width: 1020px) {
-        width: 900px;
-    }
+  @media (min-width: 720px) {
+      width: 80%;
+      margin: 0 auto;
+  }
+
+  @media (min-width: 1020px) {
+      width: 900px;
+  }
 `)
 
 const Form = memo(styled.form`
