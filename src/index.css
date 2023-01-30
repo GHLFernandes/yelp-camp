@@ -21,7 +21,12 @@ code {
     height: 100vh;
 }
 
-::-webkit-scrollbar {
+.forms-links {
+    color: #009aca;
+    font-weight: 600
+}
+
+.forms-links:hover {
     width: 10px;
     background-color: #e3e0d6;
 }

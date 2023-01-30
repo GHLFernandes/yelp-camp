@@ -39,18 +39,6 @@ const FormContainer = memo(styled.div`
     padding: 20px 20px;
     row-gap: 0px;
 
-    .sign-in{
-        padding: 0px;
-        margin: 0px;
-        color: #6c6c6c;
-    }
-
-    .sign-in-link{
-        color: #009aca;
-        font-weight: 600
-
-    }
-
     .sign-in-link:hover, .sign-in-link:focus{
         color: #006484;
     }
@@ -92,7 +80,7 @@ const SignUpPage: FC = () => {
         <FormContainer>
           <Title className='title-forms'>Start exploring camps from all around the world.</Title>
           <SignUpForm />
-          <p className='sign-in'>Already a user? <Link className='sign-in-link' to='/sign-in'>Sign in</Link></p>
+          <p className='sign-in'>Already a user? <Link className='forms-links' to='/sign-in'>Sign in</Link></p>
         </FormContainer>
         <TestimonialsContainer>
           <Testimony />
