@@ -80,7 +80,10 @@ const ChangePassForm: FC = () => {
         onChange={(e) => { setConfirm(e.target.value) }}
       />
       <ErroText erro={erro}/>
-      <Button type='submit' className='full-width createAccountBtn' disabled={changing}>Change Password</Button>
+      <Button type='submit' className='full-width createAccountBtn' disabled={changing}>
+        {(changing) && <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>}
+      Change Password
+      </Button>
     </StyledChangePassForm>
   )
 }

@@ -2,28 +2,30 @@ import type { FC } from 'react'
 import React, { memo } from 'react'
 import styled from 'styled-components'
 import Title from '../../../components/Title'
-import ForgotPassForm from './components/ForgotPassForm'
+import ResetPassForm from './components/ResetPassForm'
 
 const Main = memo(styled.div`
   align-items: center;
   display: grid;
-  height: 100vh;  
+  height: 100vh;    
   padding: 0 20px;
 
   @media (min-width: 720px) {
-      margin: 0 auto;
+    smargin: 0 auto;
   }
 
   @media (min-width: 1020px) {
-    }
+
+  }
 `)
 
-const ForgotPassContainer = memo(styled.div`
+const ResetPassContainer = memo(styled.div`
     @media (min-width: 720px) {
 
     }
 
     @media (min-width: 1020px) {
+
     }
 `)
 
@@ -43,17 +45,17 @@ const FormContainer = memo(styled.div`
       }
 `)
 
-const ForgotPassPage: FC = () => {
+const ResetPassPage: FC = () => {
   return (
     <Main>
-      <ForgotPassContainer>
+      <ResetPassContainer>
         <FormContainer>
-          <Title>Enter your E-mail to Reset your Password</Title>
-          <ForgotPassForm />
+          <Title>Reset your password</Title>
+          <ResetPassForm />
         </FormContainer>
-      </ForgotPassContainer>
+      </ResetPassContainer>
     </Main>
   )
 }
 
-export default memo(ForgotPassPage)
+export default memo(ResetPassPage)

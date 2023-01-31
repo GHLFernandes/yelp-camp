@@ -79,7 +79,10 @@ const SignUpForm: FC = () => {
         onChange={(e) => { setConfirm(e.target.value) }}
       />
       <ErroText erro={erro}/>
-      <Button type='submit' className='full-width createAccountBtn' disabled={registering}>Create an account</Button>
+      <Button type='submit' className='full-width createAccountBtn' disabled={registering}>
+        {(registering) && <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>}
+        Create an account
+      </Button>
     </StyledSignUpForm>
   )
 }

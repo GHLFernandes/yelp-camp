@@ -2,3 +2,4 @@
 *.svg
 firebase.js
 authReducers.js
+config-overrides.js

@@ -78,9 +78,12 @@ const SignInForm: FC = () => {
           value={pass}
           onChange={(e) => { setPass(e.target.value) }}
         />
-        <p className='forget'><Link className='forms-links' to='/forgot-pass'>Forgot your Password?</Link></p>
+        <p className='forget'><Link className='forms-links' to='/forgot-pass'>Forget your Password?</Link></p>
         <ErroText erro={erro}/>
-        <Button type='submit' className='full-width loginBtn' disabled={authenticating}>Login</Button>
+        <Button type='submit' className='full-width loginBtn' disabled={authenticating}>
+          {(authenticating) && <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>}
+          Login
+        </Button>
         {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
         <GoogleButton className='g-btn' type='dark' onClick={ async () => { await handleGoogleSignIn() } }/>
       </StyledSignInForm>

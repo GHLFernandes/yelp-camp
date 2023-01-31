@@ -63,7 +63,10 @@ const ForgotPassForm: FC = () => {
             onChange={(e) => { setEmail(e.target.value) }}
           />
           <ErroText erro={erro}/>
-          <Button type='submit' className='full-width createAccountBtn' disabled={sending}>Send Reset Link</Button>
+          <Button type='submit' className='full-width createAccountBtn' disabled={sending}>
+            {(sending) && <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>}
+          Send Reset Link
+          </Button>
         </StyledForgotPassForm>
       }
     </>

@@ -1,10 +1,8 @@
-const path = require('path');
-
-module.exports = function override(config) {
-    config.resolve = {
-        ...config.resolve,
-        alias: { '@': path.resolve(__dirname, 'src') },
-    };
-
-    return config;
+module.exports = {
+    resolve: {
+        extensions: [".js", ".jsx", ".json", ".ts", ".tsx"], // other stuff
+        fallback: {
+            "querystring": require.resolve("querystring-es3")
+        }
+    },
 };
