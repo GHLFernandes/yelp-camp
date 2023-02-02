@@ -3,8 +3,7 @@ import React, { memo, useEffect } from 'react'
 import styled from 'styled-components'
 import routes from '../../_routes'
 import { Link } from 'react-router-dom'
-import { useUserAuth } from '../../common/contexts/UserAuthContext'
-import { auth } from '../../config/firebase'
+import Account from '../Account'
 
 export interface RightNavProps {
   open: boolean
@@ -168,26 +167,16 @@ const StyledUser = memo(styled.div`
 
 const RightNav: FC<RightNavProps> = (props) => {
   const { open, setOpen } = props
-  const { signOutUser } = useUserAuth()
-  const user = auth.currentUser
+  const user = localStorage.getItem('user')
 
   useEffect(() => {
     setOpen(open)
   }, [open, setOpen])
 
-  const handleLogout = async (): Promise<void> => {
-    await signOutUser()
-      .then(() => {
-      })
-      .catch((err: unknown) => {
-        console.log(err)
-      })
-  }
-
   return (
     <StyledRightNav>
       <MenuList open={open}>
-        {user && routes.map((route, index) =>
+        {(user !== null && user !== '') && routes.map((route, index) =>
           (((route.nav) && (route.showWhenLoggedIn)) &&
             <StyledLink key={index}>
               {
@@ -199,7 +188,7 @@ const RightNav: FC<RightNavProps> = (props) => {
             </StyledLink>
           )
         )}
-        {!user && routes.map((route, index) =>
+        {(user == null || user === '') && routes.map((route, index) =>
           (((route.nav) && (route.showWhenLoggedOut)) &&
             <StyledLink key={index}>
               {
@@ -212,14 +201,7 @@ const RightNav: FC<RightNavProps> = (props) => {
         )}
         {((user) &&
           <StyledUser>
-            <div>
-              <span id='user-email-navbar'> {user?.email} </span>
-            </div>
-            <div>
-              <Link id='log-out-navbar' to='/sign-in' onClick={ handleLogout }>
-                Logout
-              </Link>
-            </div>
+            <Account />
           </StyledUser>
         )}
       </MenuList>

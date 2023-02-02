@@ -54,14 +54,13 @@ const InfoCamp = memo(styled.div`
   }
 
   @media (min-width: 720px) {
-    padding: 20px 8%;
+    padding: 0 10%;
   }
 
   @media (min-width: 1020px) {
     display: grid;
-    grid-column: 2 / span 4;
+    grid-column: 2 / span 5;
     width: 100%;
-    padding: 20px 15%;
 
     .logo{
       position: relative;

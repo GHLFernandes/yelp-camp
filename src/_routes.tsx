@@ -9,6 +9,7 @@ const SignInPage = lazy(async () => await import('./pages/auth/SignInPage'))
 const ChangePassPage = lazy(async () => await import('./pages/auth/ChangePassPage'))
 const ForgotPasswordPage = lazy(async () => await import('./pages/auth/ForgotPassPage'))
 const ResetPasswordPage = lazy(async () => await import('./pages/auth/ResetPassPage'))
+const ProfilePage = lazy(async () => await import('./pages/user/Profile'))
 
 interface IRoute {
   path: string
@@ -98,6 +99,15 @@ const routes: IRoute[] = [
     component: ResetPasswordPage,
     name: 'Reset Password Page',
     protected: false,
+    nav: false,
+    showWhenLoggedIn: false,
+    showWhenLoggedOut: false
+  },
+  {
+    path: '/user-profile',
+    component: ProfilePage,
+    name: 'Profile Page',
+    protected: true,
     nav: false,
     showWhenLoggedIn: false,
     showWhenLoggedOut: false

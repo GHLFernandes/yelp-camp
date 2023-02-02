@@ -8,10 +8,10 @@ const Main = memo(styled.div`
   align-items: center;
   display: grid;
   height: 100vh;    
-  padding: 0 20px;
+  padding: 0 8%;
 
   @media (min-width: 720px) {
-    smargin: 0 auto;
+    margin: 0 auto;
   }
 
   @media (min-width: 1020px) {
@@ -20,6 +20,8 @@ const Main = memo(styled.div`
 `)
 
 const ChangePassContainer = memo(styled.div`
+    margin: 0 auto;
+
     @media (min-width: 720px) {
 
     }
